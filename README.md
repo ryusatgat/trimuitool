@@ -1,4 +1,4 @@
-# TrimUI Tool
+# TrimUI Smart Pro Tool
 
 - Rename rom
 - Scrape image
