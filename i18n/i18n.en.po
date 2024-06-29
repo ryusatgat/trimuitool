@@ -1,0 +1,293 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2024-06-29 03:27+0900\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.4\n"
+"X-Poedit-Basepath: .\n"
+
+#: mainform.i18n_added
+msgid "추가되었습니다"
+msgstr "Added"
+
+#: mainform.i18n_canceledscrape
+msgid "스크랩이 취소되었습니다"
+msgstr "Canceled scraping"
+
+#: mainform.i18n_confirm
+msgid "확인"
+msgstr "Confirm"
+
+#: mainform.i18n_created
+msgid "생성되었습니다"
+msgstr "Generated"
+
+#: mainform.i18n_deleteconfirm
+msgid "롬 파일을 삭제합니다. 계속 하시겠습니까?"
+msgstr "Delete the ROM file. Do you want to continue?"
+
+#: mainform.i18n_deleted
+msgid "삭제되었습니다"
+msgstr "Deleted"
+
+#: mainform.i18n_dirnotfound
+msgid "디렉터리를 찾을 수 없습니다"
+msgstr "Directory not found"
+
+#: mainform.i18n_donescrape
+msgid "스크랩이 완료되었습니다"
+msgstr "Scraping is complete"
+
+#: mainform.i18n_erroroccured
+msgid "오류가 발생하였습니다"
+msgstr "An error occurred"
+
+#: mainform.i18n_fileexists
+msgid "파일이 존재합니다"
+msgstr "File exists"
+
+#: mainform.i18n_filenotfound
+msgid "파일을 찾을 수 없습니다"
+msgstr "File not found"
+
+#: mainform.i18n_gamelistconfirm
+msgid ""
+"캐시로부터 gamelist.xml 파일을 새로 생성합니다. 계속 하시겠습니까?"
+msgstr ""
+"Create a new gamelist.xml file from the cache. Do you want to continue?"
+
+#: mainform.i18n_gencache
+msgid "캐시를 생성하고 있습니다..."
+msgstr "Creating a cache..."
+
+#: mainform.i18n_noselemul
+msgid "선택된 에뮬레이터가 없습니다"
+msgstr "There is no emulator selected"
+
+#: mainform.i18n_processing
+msgid "처리중입니다"
+msgstr "Processing"
+
+#: mainform.i18n_recacheconfirm
+msgid "캐시 파일을 재생성합니다. 계속 하시겠습니까?"
+msgstr "Regenerate cache file. Do you want to continue?"
+
+#: mainform.i18n_romfrom
+msgid "롬 한글정보 출처: 텐타클팀(http://cafe.naver.com/raspigamer)"
+msgstr ""
+"Source of ROM Korean information: Tentacle Team (http://cafe.naver.com/"
+"raspigamer)"
+
+#: mainform.i18n_romnotselected
+msgid "롬을 먼저 선택해주세요"
+msgstr "Please select the ROM first"
+
+#: mainform.i18n_saved
+msgid "저장되었습니다"
+msgstr "Saved"
+
+#: mainform.i18n_scrapestarted
+msgid " 스크랩이 시작되었습니다"
+msgstr " The scraping has begun"
+
+#: tformmain.acabout.caption
+msgid "TrimUI 정보(&A)"
+msgstr "About TUI Tool"
+
+#: tformmain.acaddrom.caption
+msgid "롬추가(&N)"
+msgstr "Add rom"
+
+#: tformmain.acbuildgamelist.caption
+msgid "&Gamelist.xml 생성"
+msgstr "&Generate Gamelist.xml"
+
+#: tformmain.accancelscrape.caption
+msgid "스크랩 취소(&C)"
+msgstr "&Cancel scraping"
+
+#: tformmain.acchangeimage.caption
+msgid "이미지 변경(&I)"
+msgstr "Change &Image"
+
+#: tformmain.acdelete.caption
+msgid "삭제(&D)"
+msgstr "&Delete"
+
+#: tformmain.acdetectbasepath.caption
+msgid "기준위치 자동인식"
+msgstr "Detect"
+
+#: tformmain.acexit.caption
+msgid "종료(&X)"
+msgstr "E&xit"
+
+#: tformmain.acgeneratecache.caption
+msgid "캐시 재생성(&C)"
+msgstr "Generate &cache"
+
+#: tformmain.acopenbasepath.caption
+msgid "기준위치 열기"
+msgstr "Open"
+
+#: tformmain.acopenimagepos.caption
+msgid "이미지 위치 열기(&O)"
+msgstr "&Open Image Folder"
+
+#: tformmain.acrefresh.caption
+msgid "새로 고침"
+msgstr "Refresh"
+
+#: tformmain.acrename.caption
+msgid "이름 바꾸기(&R)"
+msgstr "&Rename"
+
+#: tformmain.acrescrapeall.caption
+msgid "모두 스크랩(&A)"
+msgstr "Scrape &all"
+
+#: tformmain.acsaveemuinfo.caption
+msgid "상세정보 저장(&V)"
+msgstr "Sa&ve details"
+
+#: tformmain.acscrape.caption
+msgctxt "tformmain.acscrape.caption"
+msgid "스크랩(&S)"
+msgstr "&Scrape"
+
+#: tformmain.acscrapemissing.caption
+msgid "누락 항목 스크랩(&M)"
+msgstr "Scrape &missing"
+
+#: tformmain.btautodetect.caption
+msgid "!"
+msgstr "!"
+
+#: tformmain.btopen.caption
+msgid "..."
+msgstr "..."
+
+#: tformmain.btrefresh.caption
+msgid "⟳"
+msgstr "⟳"
+
+#: tformmain.caption
+msgid "TrimUI Tool v0.7"
+msgstr "TrimUI Tool v0.7"
+
+#: tformmain.ckhidebios.caption
+msgid "바이오스숨기기"
+msgstr "Hide bios"
+
+#: tformmain.ckshortname.caption
+msgid "롬 단축파일명"
+msgstr "Shortname"
+
+#: tformmain.ckuseswap.caption
+msgid "스왑 사용"
+msgstr "Use swap"
+
+#: tformmain.edsearch.hint
+msgid "스크래핑 시 해당 키워드를 통해 검색합니다"
+msgstr "Search with keyword when scraping"
+
+#: tformmain.groupbox1.caption
+msgid "상세정보"
+msgstr "Details"
+
+#: tformmain.label1.caption
+msgid "기준위치"
+msgstr "Base path"
+
+#: tformmain.label2.caption
+msgid "에뮬레이터"
+msgstr "Emulator"
+
+#: tformmain.label3.caption
+msgid "스크랩검색어"
+msgstr "Search word"
+
+#: tformmain.label4.caption
+msgid "레이블"
+msgstr "Label"
+
+#: tformmain.label5.caption
+msgid "롬 경로"
+msgstr "Rom path"
+
+#: tformmain.label6.caption
+msgctxt "tformmain.label6.caption"
+msgid "이미지 경로"
+msgstr "Image path"
+
+#: tformmain.label7.caption
+msgid "확장자 목록"
+msgstr "Extensions"
+
+#: tformmain.label8.caption
+msgid "gamelist"
+msgstr "gamelist"
+
+#: tformmain.label9.caption
+msgid "아이콘"
+msgstr "Icon"
+
+#: tformmain.listview.columns[0].caption
+msgid "롬이름"
+msgstr "Rom name"
+
+#: tformmain.listview.columns[1].caption
+msgctxt "tformmain.listview.columns[1].caption"
+msgid "이미지 경로"
+msgstr "Image path"
+
+#: tformmain.listview.columns[2].caption
+msgid "롬파일명"
+msgstr "Rom filename"
+
+#: tformmain.listview.columns[3].caption
+msgid "롬경로"
+msgstr "Rom path"
+
+#: tformmain.menuitem20.caption
+msgid "TrimUI Tool 정보(&A)"
+msgstr "About TUI Tool"
+
+#: tformmain.menuitem23.caption
+msgid "언어(Language)"
+msgstr "&Language"
+
+#: tformmain.menuitem4.caption
+msgid "파일(&F)"
+msgstr "&File"
+
+#: tformmain.menuitem5.caption
+msgid "도움말(&H)"
+msgstr "&Help"
+
+#: tformmain.menuitem9.caption
+msgctxt "tformmain.menuitem9.caption"
+msgid "스크랩(&S)"
+msgstr "&Scrape"
+
+#: tformmain.mnlangeng.caption
+msgid "&English(영어)"
+msgstr "&English"
+
+#: tformmain.mnlangeng.hint
+msgid "EN"
+msgstr ""
+
+#: tformmain.mnlangkor.caption
+msgid "한국어(&Korean)"
+msgstr "&Korean"
+
+#: tformmain.mnlangkor.hint
+msgid "KO"
+msgstr ""

@@ -1,0 +1,279 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: mainform.i18n_added
+msgid "추가되었습니다"
+msgstr ""
+
+#: mainform.i18n_canceledscrape
+msgid "스크랩이 취소되었습니다"
+msgstr ""
+
+#: mainform.i18n_confirm
+msgid "확인"
+msgstr ""
+
+#: mainform.i18n_created
+msgid "생성되었습니다"
+msgstr ""
+
+#: mainform.i18n_deleteconfirm
+msgid "롬 파일을 삭제합니다. 계속 하시겠습니까?"
+msgstr ""
+
+#: mainform.i18n_deleted
+msgid "삭제되었습니다"
+msgstr ""
+
+#: mainform.i18n_dirnotfound
+msgid "디렉터리를 찾을 수 없습니다"
+msgstr ""
+
+#: mainform.i18n_donescrape
+msgid "스크랩이 완료되었습니다"
+msgstr ""
+
+#: mainform.i18n_erroroccured
+msgid "오류가 발생하였습니다"
+msgstr ""
+
+#: mainform.i18n_fileexists
+msgid "파일이 존재합니다"
+msgstr ""
+
+#: mainform.i18n_filenotfound
+msgid "파일을 찾을 수 없습니다"
+msgstr ""
+
+#: mainform.i18n_gamelistconfirm
+msgid "캐시로부터 gamelist.xml 파일을 새로 생성합니다. 계속 하시겠습니까?"
+msgstr ""
+
+#: mainform.i18n_gencache
+msgid "캐시를 생성하고 있습니다..."
+msgstr ""
+
+#: mainform.i18n_noselemul
+msgid "선택된 에뮬레이터가 없습니다"
+msgstr ""
+
+#: mainform.i18n_processing
+msgid "처리중입니다"
+msgstr ""
+
+#: mainform.i18n_recacheconfirm
+msgid "캐시 파일을 재생성합니다. 계속 하시겠습니까?"
+msgstr ""
+
+#: mainform.i18n_romfrom
+msgid "롬 한글정보 출처: 텐타클팀(http://cafe.naver.com/raspigamer)"
+msgstr ""
+
+#: mainform.i18n_romnotselected
+msgid "롬을 먼저 선택해주세요"
+msgstr ""
+
+#: mainform.i18n_saved
+msgid "저장되었습니다"
+msgstr ""
+
+#: mainform.i18n_scrapestarted
+msgid " 스크랩이 시작되었습니다"
+msgstr ""
+
+#: tformmain.acabout.caption
+msgid "TrimUI 정보(&A)"
+msgstr ""
+
+#: tformmain.acaddrom.caption
+msgid "롬추가(&N)"
+msgstr ""
+
+#: tformmain.acbuildgamelist.caption
+msgid "&Gamelist.xml 생성"
+msgstr ""
+
+#: tformmain.accancelscrape.caption
+msgid "스크랩 취소(&C)"
+msgstr ""
+
+#: tformmain.acchangeimage.caption
+msgid "이미지 변경(&I)"
+msgstr ""
+
+#: tformmain.acdelete.caption
+msgid "삭제(&D)"
+msgstr ""
+
+#: tformmain.acdetectbasepath.caption
+msgid "기준위치 자동인식"
+msgstr ""
+
+#: tformmain.acexit.caption
+msgid "종료(&X)"
+msgstr ""
+
+#: tformmain.acgeneratecache.caption
+msgid "캐시 재생성(&C)"
+msgstr ""
+
+#: tformmain.acopenbasepath.caption
+msgid "기준위치 열기"
+msgstr ""
+
+#: tformmain.acopenimagepos.caption
+msgid "이미지 위치 열기(&O)"
+msgstr ""
+
+#: tformmain.acrefresh.caption
+msgid "새로 고침"
+msgstr ""
+
+#: tformmain.acrename.caption
+msgid "이름 바꾸기(&R)"
+msgstr ""
+
+#: tformmain.acrescrapeall.caption
+msgid "모두 스크랩(&A)"
+msgstr ""
+
+#: tformmain.acsaveemuinfo.caption
+msgid "상세정보 저장(&V)"
+msgstr ""
+
+#: tformmain.acscrape.caption
+msgctxt "tformmain.acscrape.caption"
+msgid "스크랩(&S)"
+msgstr ""
+
+#: tformmain.acscrapemissing.caption
+msgid "누락 항목 스크랩(&M)"
+msgstr ""
+
+#: tformmain.btautodetect.caption
+msgid "!"
+msgstr ""
+
+#: tformmain.btopen.caption
+msgid "..."
+msgstr ""
+
+#: tformmain.btrefresh.caption
+msgid "⟳"
+msgstr ""
+
+#: tformmain.caption
+msgid "TrimUI Tool v0.7"
+msgstr ""
+
+#: tformmain.ckhidebios.caption
+msgid "바이오스숨기기"
+msgstr ""
+
+#: tformmain.ckshortname.caption
+msgid "롬 단축파일명"
+msgstr ""
+
+#: tformmain.ckuseswap.caption
+msgid "스왑 사용"
+msgstr ""
+
+#: tformmain.edsearch.hint
+msgid "스크래핑 시 해당 키워드를 통해 검색합니다"
+msgstr ""
+
+#: tformmain.groupbox1.caption
+msgid "상세정보"
+msgstr ""
+
+#: tformmain.label1.caption
+msgid "기준위치"
+msgstr ""
+
+#: tformmain.label2.caption
+msgid "에뮬레이터"
+msgstr ""
+
+#: tformmain.label3.caption
+msgid "스크랩검색어"
+msgstr ""
+
+#: tformmain.label4.caption
+msgid "레이블"
+msgstr ""
+
+#: tformmain.label5.caption
+msgid "롬 경로"
+msgstr ""
+
+#: tformmain.label6.caption
+msgctxt "tformmain.label6.caption"
+msgid "이미지 경로"
+msgstr ""
+
+#: tformmain.label7.caption
+msgid "확장자 목록"
+msgstr ""
+
+#: tformmain.label8.caption
+msgid "gamelist"
+msgstr ""
+
+#: tformmain.label9.caption
+msgid "아이콘"
+msgstr ""
+
+#: tformmain.listview.columns[0].caption
+msgid "롬이름"
+msgstr ""
+
+#: tformmain.listview.columns[1].caption
+msgctxt "tformmain.listview.columns[1].caption"
+msgid "이미지 경로"
+msgstr ""
+
+#: tformmain.listview.columns[2].caption
+msgid "롬파일명"
+msgstr ""
+
+#: tformmain.listview.columns[3].caption
+msgid "롬경로"
+msgstr ""
+
+#: tformmain.menuitem20.caption
+msgid "TrimUI Tool 정보(&A)"
+msgstr ""
+
+#: tformmain.menuitem23.caption
+msgid "언어(Language)"
+msgstr ""
+
+#: tformmain.menuitem4.caption
+msgid "파일(&F)"
+msgstr ""
+
+#: tformmain.menuitem5.caption
+msgid "도움말(&H)"
+msgstr ""
+
+#: tformmain.menuitem9.caption
+msgctxt "tformmain.menuitem9.caption"
+msgid "스크랩(&S)"
+msgstr ""
+
+#: tformmain.mnlangeng.caption
+msgid "&English(영어)"
+msgstr ""
+
+#: tformmain.mnlangeng.hint
+msgid "EN"
+msgstr ""
+
+#: tformmain.mnlangkor.caption
+msgid "한국어(&Korean)"
+msgstr ""
+
+#: tformmain.mnlangkor.hint
+msgid "KO"
+msgstr ""
+

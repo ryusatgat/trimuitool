@@ -1,0 +1,841 @@
+object FormMain: TFormMain
+  Left = 354
+  Height = 642
+  Top = 134
+  Width = 918
+  AllowDropFiles = True
+  Caption = 'TrimUI Tool v0.7'
+  ClientHeight = 642
+  ClientWidth = 918
+  Menu = MainMenu
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnDropFiles = FormDropFiles
+  OnShow = FormShow
+  LCLVersion = '3.4.0.0'
+  object Panel1: TPanel
+    Left = 692
+    Height = 535
+    Top = 0
+    Width = 226
+    Align = alRight
+    BevelOuter = bvNone
+    ClientHeight = 535
+    ClientWidth = 226
+    TabOrder = 0
+    object Image: TImage
+      Left = 13
+      Height = 290
+      Top = 32
+      Width = 200
+      Center = True
+      ParentShowHint = False
+      PopupMenu = pmImage
+      Proportional = True
+      ShowHint = True
+    end
+    object NoImage: TImage
+      Left = 27
+      Height = 171
+      Top = 92
+      Width = 172
+      Picture.Data = {
+        1754506F727461626C654E6574776F726B47726170686963D016000089504E47
+        0D0A1A0A0000000D49484452000000AC000000AB0806000000FB347760000000
+        017352474200AECE1CE90000000467414D410000B18F0BFC6105000000097048
+        597300000EC300000EC301C76FA8640000166549444154785EED9D3FACDEB615
+        C5B314488106F0D0C153E10219820E41462F453D1A28827A343A65F4566FF152
+        78ABC774CB98A5C01B3D66F418204B468F1E337AF4F8F5FCDE93623DBE4B8A94
+        7845EAFB7480637F4F7F288A3ABCBCBC24A54F4E07F2F1F6EDE9F4E6CDE9F4F2
+        E56D3E7E7C3A3D7A34CF172F6E9FF7FAF5E9F4D34F43E20772700836C4FBF737
+        A2FCE1878F62FCEA2B95948ACA930F1E7C14F577DFDDE4E1D75F874C1D18A192
+        BA707CF8703AFDF8E38D501E3EBC2BA4D6FCE28BD3E9D9B3D3E9EAEA10B0A012
+        B9408CCD3A16CD1249CFC4DA3F7F7EE34ED01A5C1854021702ACE837DF9C4EF7
+        EEDD15C19EF9E4C98DFB424B7101D01D9F317EF9E5A639BD7FFFEE833E377EFA
+        E9E9F4F4E98DE53D63E84ECF0CEFDEDD34F7F87ED683BD045241A9A8671881D0
+        DD9D09102A4DBEF5002F99F8E9F8EC6702DDD1CE41B38F1F673DAC831F8970F1
+        E3770EDDC94E710875198932ECD8CFD51DEC0C8C361D425D4F84BB438BAB9CEF
+        04C41C09EE5B857F7039A9FC3B1A90508E770046792E2134D58A84C45EBDDA45
+        2C57B9ED1834FF8CE55B857CB03E090576EE2628971D829A4EF34FCDB70AF6A0
+        2F3B761394BBCE8055DD6276D4C13419C2EED0DA2A671D8131F1731BEBDF3B69
+        E93AF26D95A30E40811CA354FD9269978C247600E5A6311800B8E471FFBD9096
+        8F684D6328270DC1CCFAA363B52F32A9A6A18BA01C34C23108B05F126A6C245A
+        5DBD01F6EEAF329184B9A7E362423A8BCC884A91F1FBF178EE9F34F6DCC12492
+        D360C583AEBC21A8957B1A0818D7537DFFFD8DE83C629394096923FA5ED795C5
+        886837EE8CE9AA1B81DAD8FBC360E52AD60FF1B40C9C23622C326BB77A8F4953
+        66C4CE3782AEB801A885BD163C731410C686855E0C2A0F1DD45EA329B836447B
+        3680AEE60CC44A2DB46EB41529602CE91E273453B1A8603D96E906A2D5951C81
+        1BD09365C5429DD30A532A5C4F4BD511AD734BA5AB380151F4E2B35269CE7935
+        299DB65E848BE577EC88E90A0EE8251AC0433CF365CFB7C02AD91E5663D09239
+        85BC94BA035AC759E9485D92504360715B77D068D51C5C2FA55C197408AC1BD8
+        8AC4321B04B4BB04AB085A0E4E388C8829D58A20F462657C0BD2FCF71C9A6A05
+        42628CCA5965B605696D2B42295602FE538B892C5C939EFF813470135A85C22A
+        3E1FA5560134C1AD0AE33FFF19327160163CA7169D328C4AA5D64FA95540EB90
+        CA6161CBD0625A2706AD42DF4229AD04B38FAC0C6ECD43B4656831711EEBBE12
+        4A6505F08BAC8CB5E28C687FD1437AA33C87FC75C144979FE4B387E97C58D023
+        E69CD7AF5FABDEBF3C3D7BF64C8DD5A36B7EA3CE0ADBAEAEAE16A59B052CDED6
+        833B58F715500A0BC143EEF1E51609D122844F744CC8873CB4423C501317A6F3
+        AE6084E7AD7CBAA7EABD8769C4C8B154B8EAA0326C39C8832BB2E235A04A6121
+        7A18518931528B638285DF33E7B5004B058BB5C49286E7E692735D2CEE96833D
+        2B061574F60230E9C2CA484FC4B70E9012ECA7AAF925AEC112C1BE57138C350F
+        CF2B25F7415AD5B1E5B2A585AE81CE2C0435A3D779992103D1A6040B1FD33466
+        A254B058C5AF6459C27342DEBB77EF9AD6BE2911BE8BA5DDAA138D6BB0A0EFA0
+        330BC1709F95815E3911ED9C60E10F99D18652C1D2890A8F1F4945A173353D9F
+        DF6C4BE5F939C3E01ED8CA3D6004AE103AAB00D488ADE3773538883647B0F7D5
+        91CC710D4A044B14203C76648EE838C63A17BA74C4C0561DB1376F860BE64167
+        14A0E78ED61C255A4BB05FC8BD09B7D1239F43896063AE4049478F109795C693
+        0AB14D13B81B2A2F5DC497851D309D91893D74B466F8C81019CD2E1DAE70FB8F
+        33CB6772051BB3AE88B804F8AB587F2B2D42642EA063B7457FA5A003A6A33341
+        015B17DB111F89E1C346B096F5421CA94E4DAE6063BE2B422EC5777AB0565A6C
+        770395C17B8A22F1FC4C2BABA33340E15A17DA192DC1D2C98AF5E08979C6902B
+        58EBB8250315807C8669412A852BB678FE99954E4766E00CAC2B8C0916D07909
+        F741865C2DE40896CE5B780C5CD3BBB7AE8B1FEE0EEF89F999565647CEC0BB76
+        91D1FFFED7DE579929C182172F5EDCD98F182CD72047B0B14AB0A609B73A8EB8
+        2FEEA00CBCE71D64948B8E9A817726470B8670ACFD15690AF61FFFB8B9BE8030
+        ADA801420E912358AC73780C5CE2BF8E88F9C49B80FBF30C6B6658591D950031
+        3E2BE15A0CC347CEA235052B4E07179885151E4314218C77E60816EB1D1E03B9
+        C652C4C25B9B012BC8F5BC3863657544029E71577A9E5680DE51B451C1C28915
+        B526A78461A81CC1C6425A442696C2B2B054A8CD8005F4ECD3CC58591D1181B7
+        754DD52427D126050B87DE36AE8125C8570C4B0FC811AC65ADE1349D52583E2C
+        79D914B871BAAE1B79FE11686F049EBDC2C05A99C00A55F69766050B07D15AFE
+        27966C0CD2E7083616254885CBE6605D17116F0ECA49D77661E27EB4D7002619
+        D36C255683B93E1CA34D15459B25583888D6720D4671E4081658A353A5A35C23
+        621500BF7673E0CE553628B7689425D01E039EA1ACD2B1EF8AA2CD162C946899
+        736A098ECE9435D0600996B1FEF038B8C48F8D4D825913755805CF56385209B5
+        C78067672BE86D67A192688B040B255AE61484E720622BFC650936D6F19A1BFA
+        0D8175B5E63C94A653159E5636E2976B4F00CF4CAC99595441B4C58285126D6A
+        2EEB94966081658D21E9E6880D4BCF9C592B0DD7790439F0B4B2C628A3B606F0
+        8CB32DB1AE53AC14ED22C18AEFFFF94FD3350819136CCCCA427CE2D472173A79
+        963587F8D1CDACEB084F03A70A1D425B0378C5D8167634EE608568970A165EFD
+        ED6FFAEFEEF953C6040B52561AE1B19FF9B1E39271425FCCCB8D2D97C13D5833
+        0051155E5696E71C54486D9D8002B74EACC19A1D8385A25D2358F8F4CF7FD67F
+        77D31899122C9630E61A2CE1740E4473785AD94037DA3281D72853C4815E8505
+        A25D2BD85FC5FBBFFFBD7EDE4D07A6040B106DCC17CD2596B559542005AF8E3A
+        D67B026D99009FC13A692DBDE28485A25D2B58C8F1611A23E7043B82B869CECA
+        D890F8BBDDB80121A844CA637506AEA4B64C8025B44E5ACBCC07B90805A2AD21
+        58F8580CD381B9820574B4F053631DAA91585462B95D5AD529F035D53155A6EB
+        73D229D55F03286CEBE0B5DC62D87045476C158D5EEC1220743A5A74BAB0BE90
+        F82FDB7605AFCED7A4B2EAAF015EFEEB569D8356A2653974EBD0522FF09A3035
+        F163F5D7000FFF15016DF93011ADF782398B87683F422E8E59466B38F163F5D7
+        000FFF750B772004B5FC106D3B78B905831FAB5F8297FFEA151D98C321DA76F0
+        8A160C7EAC7E095E1769D9693844DB065842AB5CD67298F4AE5F027F5807ADE1
+        D6FEAB8543B46DE031BC3FACFFD32FC1A3C3D5C27FB57088767B78F8B143C74B
+        BF048FA5DCADFC570B8768B785878B498B2DE897E0F1300931F58443B4DB81C9
+        305659ACE5DBB712AC63E2DDE110ED76F02867596EDE2B69EF5CC3C17C778943
+        B4DBC0C3CD7CF54A82F5586110CCB0E90E8768FDE1D191579AAC11B677AEE182
+        77D76F8E43B4BEF008953E7A24C17AD48421C8DB3D5A8996E632B18EEB2CE011
+        2970136C4FCB37E6D04AB4B84DE72C5A269A5BF7BD862A33BEEA60EF5CC33D09
+        163097C26BF27A8AE72C5A8FF9297A46ACBBB077AE61620E01AFAD1C57868E4C
+        7D54C23A7ECA35B895D6D5D5E9CDFDFBA737CA3F7C37BD9F02BE15C734A664BB
+        75FC5AD1B24E8CC9DE4CFAE63DB62CA319C9DF6CE7DD05E1EB422DCC95758A77
+        565B9C8B6029C87019084B9C63B08E9F92C25A021E8E95DEC897A27E14F38168
+        A5C776FDB0B940B4DC77E98246DEAD90FAA4D35C59A748C5B8053A96DA5E9B2C
+        8A3777AC62A236D7166CEADC14521F6B834B048B25B5D21AF993A81F3633454B
+        455B232C184355C1026DAF4D1FC186CDC304B505CB22BDD2B79F70FCDC9B5C5E
+        2EE8883D13ADB446B25F3FE29C116DEC9B62A58C611F82F558E9B8A16061E94B
+        2552AF0E1AF9F25FFF2AEA887D10EF89565A23D9CF71FA23CE886859616BA519
+        928A4899A52A640CD505EB600C776761B130E19A7E8E2941F80A4CEB5DAFD70F
+        80FBC82C9F2B314CC35A56FE5AD48F3403D1CE5530DE638B4F6B7D2397CE109D
+        32CA78B4CE31943E9B5938840B7D049BE8F5AF152CB4DEB99AFB4E00EBB59556
+        7ABF598C4CD186EF2AF854B45EBAF144D48F790EA22582127303B0A2252FD6E0
+        5D08A9EFDB5617ACCEAF4D3ECB67EE5845E72881D53C9A4D9281F0DCF1456CD3
+        6DF0567A33A2E51546E1F958576B3B427E2FEA8F794AB44FFEFE77FDBC9B0EE5
+        927AEBE112EC43B0CAA4B563159D056B85A4105E0EC237ADD09C12EA996E8377
+        2A4042B4AFC4F0FCEF45F6596EC1B86F8EBF88E1B9108B5BF296995C54152CF9
+        D3F955892B783D19C3DAB98689D7A1D7106CEC4D80733159EBAB2E6CB3AE615A
+        EC8868BF10C3F3B1AEEC439CE1BE8722FBE6F8420CCF855E2F31EE5EB02A7B72
+        64EF5CC344AFBD8660B12E3CB470FB5CE1861FD9C0DA826CC18240B49615C4AA
+        B20F5A6E01CC1949FB4A0CCF1BF3EC81AA822516AFF3ABD24DB0090B504BB056
+        E789BF633159B687D105FC595024583011EDF3E03C1836F9965B303730819F1B
+        9E039F7EFDF59089FAA82A588F8501E4EFFA0B80D6CE354C7C87AA966081D5BB
+        8FC56409BA87C78E61A062C1029DFBE1CB2F4FF783F3E0E80E8CB4DC82E450AD
+        18F35FAF073486FB0F513217C0AAD85639E490F3EE806884F65525F9BB9EBB6A
+        ED5C43220F11D414AC159F340B4F08C7DDF97B84758D59C10AAFFFF7BF3BE74D
+        DD819131B72035541B1BE625DE7B6DDD0DD15AF711A3D5692B397F4AB3CC3D96
+        7A63A05C26DA620522B00A65A9608135A2133E0C2C6978CCF43B59D63572046B
+        59F85804C0720B5243B5B117272364FD30455B223877C17A74E6E50D7C721DE4
+        B776AE6524466815CA1AC132852EDC1F8A2D8CBDE2CB4E9B44EB1A7382B57C68
+        18BA03232DB7203554CB8858783CBC35521688B64470EE82F518F2C7ADBB4EDC
+        DAB996911118AB50D6089691A0707F18930D875EC36FBD5AD79813AC15A578F4
+        873FD86521C6DC82D8506DCC2520E6AB1F1F39116D89E072054BF890B248F14E
+        BF0163A573AB93F8FBF5053CDEE9191902AC2D58F0503E73780C1D0BC0FFE1BE
+        7038738960AD6B3EF8D39FAE454BF36F9151AEF09CD8502D61AFF05868BA1186
+        7B3082B2B2D2C9156CEAD94441F9EADCEA54ABA87F05F962E6016B18B9510FC1
+        52C3C363701540187BC562842815AC65D5973235546BCDFE6290827D7718116D
+        13C112D6D4B95539C49FF54BF0086D05CDF2080FC1E28F86FEE428CCD01DB046
+        894A056BF9CD6B18EBA8617DADE3A333BE0CD13611AC8701244D41BF047ACCD6
+        416B59A15072040B48233C2E8CBD22EA31F63A45A960E7267F973236546B75D4
+        20B1DFE8BCDA40B44D044B9448E756E5D062EA97E0318C068D20BE97602D5F35
+        B4AE84A12C9408D6FABA37C4F5E09C5BFCF6DBD34B899B51AD91D14F2689FA71
+        8B88D21A98808CB0E987CD89683717AC97968630A47E0DF0A815C6CD7A0916CC
+        7DF32AF6ADAB12C15A33BBB0B851D063C63DD17190D5B3E1F9303654FB9D681D
+        0FB1CCD1D5B883683717AC87FF0A87FCEAD7000FBF83420BE029D8D432124415
+        9B67902B58E69F5AB1D7304C76078168ADD95DA9A1DA982F0BE9B431AB0BF7E1
+        B7410591A1DD1FFEF8C7D3E3BFFEF5D6F12373059B13D61A793D3FD763C060A2
+        23FD35C0AB660CE1A5119E82B546B446B24A36865CC15AD1083886D092988816
+        6B6AA5131BAAC535B0666EAD61AE604BF8EEE79F7DBE9536D187FE1AE0E57B04
+        62F4142C88ADD56762480CB982B58E63D42C1B885669C4DC82D4502DA1AF98FF
+        BB842E82FDF7BFCDBCAFE6A42FA4BF26F0F063A97133C3A035056B4D88B162AF
+        53E408966B86C7C0621F8FB250A5B2DC829C55B558E7B9D5B92932E0414B5173
+        B6D6C8777FF98B99E7D59C3C6FFD3581871F0B2735C45BB03C8830EC3437433F
+        47B0FC1D1E03891A1443797CF9F9E7667A39AB6A11353E2BA367561A211138D6
+        FBED679FDDB4A411AC16ACA81F7519F483B465022F3F56057120C06069CDF22A
+        249DAD1FC53174C64C2FB69911045AD1846817C3EB0B888131D39609BCFC5898
+        B08A178B8AA22D626DD1721F84F6AC6BAD6510CBD796005E174EF4D22F1AE720
+        5AAF9619062393DA12C0635E01A4F3650C8B1E10F62C5A4FEB4A9904D0D6005E
+        13BAE16165E3D8AB683DADEB6455C8086D35E0F136187858D934F6285A2FEB4A
+        9E288F00DA63C063C5E3C8C3CAA6B127D17AAC071C1919EED61E0358418F2136
+        7858D979EC41B4E471323FA23A23C3DDDA1381D720022C1D1DBA44F42E5A4FDF
+        D5983435427B23F034F73067C2C8A5A3956869055323789E2D3034E6718CD0DE
+        08282C2F871AD29C708D036950469EAD5D8C29D1F2610FEB9C1A9C7119754402
+        9E661F92FE813CE0465965E8494BB4FC6D1D5B8B339D721D9180B7959DA94D07
+        02B4162D7AF07825C0C80C3DE8A819785BD963624C195A8AD66B82CBC88C90A7
+        8E9A81B795850927FB808116A2FDDDEFECEDB598D9DAEAC80C785B5918592078
+        208216A2F564644573081D99812DAC2CF1BF630A6219CE49B49903163A32135B
+        5859E63050390EE4E31C449BF8FE6D081D9D0984E43914379240F98132EC59B4
+        8591229D510046A7AC8BD6260FE04019F62ADAC258BCCE2884E728C79447E4A0
+        1C7B13ED82D14E9D5508CC3766DCCA406D263E337920823D8976C17C129DB500
+        5B74C04616361907843D88B6A0A33585CE5C80AD3A60238F49DFE5E859B4851D
+        AD2974F6426CD5011B498D3C425E65A01F6095656BAE70F574F60A6C5D20CC3B
+        E0FD5407F2D19B683347B462500A2B8188AC8C79115764617372B1E845B4AC24
+        58697094CA4A9001326265D08B0CE3C626171FB0D15AB4F8ADBC426025945205
+        F0999BAD425D53D2193BFCDA7CB4146DF0CAA1A5504A95B065A86B4AE61F1C93
+        66E641C56E1539E0BA95A0D42AA2C5DA23888B307C4AFE8001A66E7ACFB68B91
+        150A155B41A5581193D7A23721D78E7C32F42281CFD862D5ED482A49E5D64FA9
+        56468B4E58489AA04B8E2460D178A95F8B7EC5C89297721440293B805AD5AA09
+        1A4981E1575F5AA78CCE4DEBB2A7A238457194BA13A85D88C6BAA12D491EE81D
+        9FF380039592CAD9BA651BE9B8DC49A93B82E1DB96CDD294089766F29C5C8551
+        A8AD2DEA94CE33EC74056778BFF26809999760BC7B7437A063C9DBFD7A68C1A6
+        A4257386AEB201F0AB7AB1B453F2C079F07B882CD02F4010BD34FB2137102BD0
+        9536024E786F16614A84C0C8192D422FFE2E2E154268192ACCE18613ED75B50D
+        D14B472C878CA0E1F352D1B6123002650084D8698F2D5248F2B8B16BA5AB6E0C
+        9AB65E9BB5147938CC4CC3FFC5EA61891158A9983967B49CB823A4B9974A3C25
+        796E300149576E001E72EFCDDC1A321CE9F59D881E88581D060572A0AB3702A2
+        6D35F7E0E07252191B4E36520E1A039FCD2A9883FD1177A8718754B9E8008495
+        F6E8D75E0AF1DF2BCD675D0BE5A6131C2E429FC405A8B052A01694A3CE404C6F
+        0F219D4B20518CCE260F29571D821EE83947117A2773133A1DBA56EE3A061DB2
+        3DC628F74C46FB1A77AC52500E3B07B3ABE89D5A857BB01E891B378AAD964039
+        DD09181DF2FC82C9A592E6BF9308400E94E31D810EC0E126D463E7CDBF05E57A
+        87A090198B3F845B4E2230AC796B385AB506BA831DE3106E3E112A1675E72B2E
+        7427670084DBDB52915E48653EA3A541BAA333023E2E030F47E7ECA60CF0F777
+        E6A3CE417776A6603811CB724973146861189DDA41786A297497178071D1DE39
+        BA0CF8A6C4A91D9756F704DDF18581074BE763CF43BFB41AF4F4899F9E59933F
+        07DDFD058387CD9839D6B767BF9796012B8A40771A8EAA0595C681DF404F1A01
+        132A63AD550B11234EAE4D2B4007B2A3A97D3D4025746016746258708790698A
+        11145CB26E8B4A309ECFFC5FD2A49230F47C6006A7D3FF0176F1E564B5BA5487
+        0000000049454E44AE426082
+      }
+      Visible = False
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Height = 535
+    Top = 0
+    Width = 692
+    Align = alClient
+    ClientHeight = 535
+    ClientWidth = 692
+    TabOrder = 1
+    object Panel4: TPanel
+      Left = 1
+      Height = 264
+      Top = 1
+      Width = 690
+      Align = alTop
+      BevelOuter = bvNone
+      ClientHeight = 264
+      ClientWidth = 690
+      TabOrder = 0
+      object Label1: TLabel
+        Left = 12
+        Height = 24
+        Top = 14
+        Width = 72
+        Alignment = taRightJustify
+        AutoSize = False
+        Caption = '기준위치'
+      end
+      object edBasePath: TEdit
+        Left = 88
+        Height = 40
+        Top = 10
+        Width = 200
+        TabOrder = 0
+      end
+      object btOpen: TButton
+        Left = 314
+        Height = 25
+        Top = 9
+        Width = 26
+        Action = acOpenBasePath
+        Caption = '...'
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = '맑은 고딕'
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 2
+        OnClick = btOpenClick
+      end
+      object btRefresh: TButton
+        Left = 339
+        Height = 25
+        Top = 9
+        Width = 26
+        Action = acRefresh
+        Caption = '⟳'
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = '맑은 고딕'
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 3
+      end
+      object Label2: TLabel
+        Left = 399
+        Height = 24
+        Top = 14
+        Width = 76
+        Alignment = taRightJustify
+        AutoSize = False
+        Caption = '에뮬레이터'
+      end
+      object cboEmulator: TComboBox
+        Left = 480
+        Height = 35
+        Top = 11
+        Width = 136
+        ItemHeight = 0
+        Style = csDropDownList
+        TabOrder = 4
+        OnChange = cboEmulatorChange
+      end
+      object Label3: TLabel
+        Left = 8
+        Height = 26
+        Top = 231
+        Width = 104
+        Alignment = taRightJustify
+        AutoSize = False
+        Caption = '스크랩검색어'
+      end
+      object edSearch: TEdit
+        Left = 120
+        Height = 40
+        Hint = '스크래핑 시 해당 키워드를 통해 검색합니다'
+        Top = 226
+        Width = 112
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 5
+        OnKeyPress = edSearchKeyPress
+      end
+      object btScrape: TButton
+        Left = 239
+        Height = 34
+        Top = 225
+        Width = 76
+        Action = acScrape
+        TabOrder = 6
+      end
+      object btAutoDetect: TButton
+        Left = 289
+        Height = 25
+        Top = 9
+        Width = 26
+        Action = acDetectBasePath
+        Caption = '!'
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = '맑은 고딕'
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 1
+      end
+      object GroupBox1: TGroupBox
+        Left = 24
+        Height = 171
+        Top = 49
+        Width = 608
+        Caption = '상세정보'
+        ClientHeight = 147
+        ClientWidth = 606
+        TabOrder = 7
+        object Label4: TLabel
+          Left = 16
+          Height = 24
+          Top = 4
+          Width = 72
+          Alignment = taRightJustify
+          AutoSize = False
+          Caption = '레이블'
+        end
+        object Label5: TLabel
+          Left = 24
+          Height = 24
+          Top = 45
+          Width = 64
+          Alignment = taRightJustify
+          AutoSize = False
+          Caption = '롬 경로'
+        end
+        object Label6: TLabel
+          Left = 303
+          Height = 24
+          Top = 44
+          Width = 88
+          Alignment = taRightJustify
+          AutoSize = False
+          Caption = '이미지 경로'
+        end
+        object ckShortname: TCheckBox
+          Left = 97
+          Height = 27
+          Top = 116
+          Width = 108
+          Caption = '롬 단축파일명'
+          TabOrder = 7
+        end
+        object edImagePath: TEdit
+          Left = 400
+          Height = 40
+          Top = 38
+          Width = 193
+          TabOrder = 3
+        end
+        object edRomPath: TEdit
+          Left = 96
+          Height = 40
+          Top = 38
+          Width = 193
+          TabOrder = 2
+        end
+        object edLabel: TEdit
+          Left = 96
+          Height = 40
+          Top = -2
+          Width = 193
+          TabOrder = 0
+        end
+        object ckHideBios: TCheckBox
+          Left = 201
+          Height = 27
+          Top = 116
+          Width = 117
+          Caption = '바이오스숨기기'
+          TabOrder = 8
+        end
+        object edGamelist: TEdit
+          Left = 400
+          Height = 40
+          Top = 78
+          Width = 193
+          TabOrder = 5
+        end
+        object Label7: TLabel
+          Left = 0
+          Height = 24
+          Top = 82
+          Width = 88
+          Alignment = taRightJustify
+          AutoSize = False
+          Caption = '확장자 목록'
+        end
+        object Label8: TLabel
+          Left = 312
+          Height = 24
+          Top = 82
+          Width = 79
+          Alignment = taRightJustify
+          AutoSize = False
+          Caption = 'gamelist'
+        end
+        object edExtList: TEdit
+          Left = 96
+          Height = 40
+          Top = 78
+          Width = 193
+          TabOrder = 4
+        end
+        object ckUseSwap: TCheckBox
+          Left = 16
+          Height = 27
+          Top = 116
+          Width = 82
+          Caption = '스왑 사용'
+          TabOrder = 6
+        end
+        object Label9: TLabel
+          Left = 312
+          Height = 24
+          Top = 4
+          Width = 79
+          Alignment = taRightJustify
+          AutoSize = False
+          Caption = '아이콘'
+        end
+        object edIcon: TEdit
+          Left = 400
+          Height = 40
+          Top = -2
+          Width = 193
+          TabOrder = 1
+        end
+        object btSaveEmuInfo: TButton
+          Left = 470
+          Height = 25
+          Top = 118
+          Width = 123
+          Action = acSaveEmuInfo
+          TabOrder = 9
+        end
+      end
+      object btGenerateCache: TButton
+        Left = 328
+        Height = 34
+        Top = 225
+        Width = 139
+        Action = acGenerateCache
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 8
+        OnClick = btGenerateCacheClick
+      end
+      object btGenerateGamelist: TButton
+        Left = 480
+        Height = 34
+        Top = 225
+        Width = 139
+        Action = acBuildGamelist
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 9
+      end
+    end
+    object ListView: TListView
+      Left = 1
+      Height = 269
+      Top = 265
+      Width = 690
+      Align = alClient
+      AutoSortIndicator = True
+      BorderStyle = bsNone
+      Columns = <      
+        item
+          Caption = '롬이름'
+          Width = 200
+          SortIndicator = siDescending
+        end      
+        item
+          Caption = '이미지 경로'
+          Visible = False
+          Width = 1
+        end      
+        item
+          Caption = '롬파일명'
+          Width = 100
+        end      
+        item
+          Caption = '롬경로'
+          Width = 377
+        end>
+      GridLines = True
+      HideSelection = False
+      MultiSelect = True
+      ParentFont = False
+      PopupMenu = pmPopup
+      RowSelect = True
+      SortColumn = 0
+      SortDirection = sdDescending
+      SortType = stText
+      TabOrder = 1
+      ViewStyle = vsReport
+      OnCustomDrawItem = ListViewCustomDrawItem
+      OnEdited = ListViewEdited
+      OnSelectItem = ListViewSelectItem
+    end
+  end
+  object mmLog: TMemo
+    Left = 0
+    Height = 107
+    Top = 535
+    Width = 918
+    Align = alBottom
+    Color = clBlack
+    Font.Color = clLime
+    ParentFont = False
+    ReadOnly = True
+    ScrollBars = ssAutoBoth
+    TabOrder = 2
+  end
+  object ActionList: TActionList
+    Left = 108
+    Top = 363
+    object acScrape: TAction
+      Caption = '스크랩(&S)'
+      OnExecute = acScrapeExecute
+    end
+    object acRescrapeAll: TAction
+      Caption = '모두 스크랩(&A)'
+      Visible = False
+    end
+    object acScrapeMissing: TAction
+      Caption = '누락 항목 스크랩(&M)'
+      OnExecute = acScrapeMissingExecute
+    end
+    object acRename: TAction
+      Caption = '이름 바꾸기(&R)'
+      OnExecute = acRenameExecute
+      ShortCut = 113
+    end
+    object acDelete: TAction
+      Caption = '삭제(&D)'
+      OnExecute = acDeleteExecute
+      ShortCut = 32814
+    end
+    object acCancelScrape: TAction
+      Caption = '스크랩 취소(&C)'
+      OnExecute = acCancelScrapeExecute
+      ShortCut = 27
+    end
+    object acChangeImage: TAction
+      Caption = '이미지 변경(&I)'
+      OnExecute = acChangeImageExecute
+    end
+    object acOpenImagePos: TAction
+      Caption = '이미지 위치 열기(&O)'
+      OnExecute = acOpenImagePosExecute
+    end
+    object acSaveEmuInfo: TAction
+      Caption = '상세정보 저장(&V)'
+      OnExecute = acSaveEmuInfoExecute
+    end
+    object acBuildGamelist: TAction
+      Caption = '&Gamelist.xml 생성'
+      OnExecute = acBuildGamelistExecute
+    end
+    object acRefresh: TAction
+      Caption = '새로 고침'
+      OnExecute = acRefreshExecute
+      ShortCut = 116
+    end
+    object acDetectBasePath: TAction
+      Caption = '기준위치 자동인식'
+      OnExecute = acDetectBasePathExecute
+    end
+    object acOpenBasePath: TAction
+      Caption = '기준위치 열기'
+      OnExecute = acOpenBasePathExecute
+      ShortCut = 16463
+    end
+    object acExit: TAction
+      Caption = '종료(&X)'
+      OnExecute = acExitExecute
+    end
+    object acGenerateCache: TAction
+      Caption = '캐시 재생성(&C)'
+      OnExecute = acGenerateCacheExecute
+    end
+    object acAbout: TAction
+      Caption = 'TrimUI 정보(&A)'
+      OnExecute = acAboutExecute
+    end
+    object acAddRom: TAction
+      Caption = '롬추가(&N)'
+      OnExecute = acAddRomExecute
+    end
+  end
+  object pmPopup: TPopupMenu
+    Left = 220
+    Top = 363
+    object pmScrape: TMenuItem
+      Action = acScrape
+    end
+    object Scrapemissing1: TMenuItem
+      Action = acScrapeMissing
+    end
+    object RescrapeAll1: TMenuItem
+      Action = acRescrapeAll
+    end
+    object Separator4: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem22: TMenuItem
+      Action = acAddRom
+    end
+    object Rename1: TMenuItem
+      Action = acRename
+    end
+    object MenuItem1: TMenuItem
+      Action = acChangeImage
+    end
+    object Delete1: TMenuItem
+      Action = acDelete
+    end
+    object N1: TMenuItem
+      Caption = '-'
+    end
+    object C1: TMenuItem
+      Action = acCancelScrape
+    end
+  end
+  object SQLite3Connection: TSQLite3Connection
+    Connected = False
+    LoginPrompt = False
+    KeepConnection = False
+    Transaction = SQLTransaction
+    CharSet = 'utf8'
+    AlwaysUseBigint = False
+    Left = 220
+    Top = 304
+  end
+  object SQLQuery: TSQLQuery
+    FieldDefs = <>
+    Database = SQLite3Connection
+    Transaction = SQLTransaction
+    SQL.Strings = (
+      ''
+    )
+    Options = [sqoAutoCommit]
+    Params = <>
+    Macros = <>
+    Left = 220
+    Top = 427
+  end
+  object SQLTransaction: TSQLTransaction
+    Active = False
+    Database = SQLite3Connection
+    Left = 109
+    Top = 427
+  end
+  object SQLite3Name: TSQLite3Connection
+    Connected = False
+    LoginPrompt = False
+    KeepConnection = False
+    Transaction = SQLTransactionName
+    CharSet = 'utf8'
+    OpenFlags = [sofReadWrite]
+    AlwaysUseBigint = False
+    Left = 109
+    Top = 304
+  end
+  object SQLName: TSQLQuery
+    FieldDefs = <>
+    Database = SQLite3Name
+    Transaction = SQLTransactionName
+    SQL.Strings = (
+      ''
+    )
+    Options = [sqoAutoCommit]
+    Params = <>
+    Macros = <>
+    Left = 168
+    Top = 427
+  end
+  object SQLTransactionName: TSQLTransaction
+    Active = False
+    Database = SQLite3Name
+    Left = 64
+    Top = 427
+  end
+  object pmImage: TPopupMenu
+    Left = 256
+    Top = 363
+    object MenuItem2: TMenuItem
+      Action = acChangeImage
+    end
+    object MenuItem3: TMenuItem
+      Action = acOpenImagePos
+    end
+  end
+  object MainMenu: TMainMenu
+    Left = 45
+    Top = 363
+    object MenuItem4: TMenuItem
+      Caption = '파일(&F)'
+      object MenuItem7: TMenuItem
+        Action = acDetectBasePath
+      end
+      object MenuItem6: TMenuItem
+        Action = acOpenBasePath
+      end
+      object MenuItem19: TMenuItem
+        Action = acRefresh
+      end
+      object Separator2: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem21: TMenuItem
+        Action = acAddRom
+      end
+      object MenuItem12: TMenuItem
+        Action = acSaveEmuInfo
+      end
+      object MenuItem13: TMenuItem
+        Action = acRename
+      end
+      object MenuItem15: TMenuItem
+        Action = acGenerateCache
+        OnClick = MenuItem15Click
+      end
+      object MenuItem14: TMenuItem
+        Action = acBuildGamelist
+      end
+      object Separator1: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem8: TMenuItem
+        Action = acExit
+      end
+    end
+    object MenuItem9: TMenuItem
+      Caption = '스크랩(&S)'
+      object MenuItem10: TMenuItem
+        Action = acScrape
+      end
+      object MenuItem11: TMenuItem
+        Action = acScrapeMissing
+      end
+      object MenuItem16: TMenuItem
+        Action = acCancelScrape
+      end
+      object Separator3: TMenuItem
+        Caption = '-'
+      end
+      object MenuItem17: TMenuItem
+        Action = acChangeImage
+      end
+      object MenuItem18: TMenuItem
+        Action = acOpenImagePos
+      end
+    end
+    object MenuItem23: TMenuItem
+      Caption = '언어(Language)'
+      object mnLangKor: TMenuItem
+        Caption = '한국어(&Korean)'
+        Checked = True
+        GroupIndex = 1
+        Hint = 'KO'
+        OnClick = mnLangKorClick
+      end
+      object mnLangEng: TMenuItem
+        Caption = '&English(영어)'
+        GroupIndex = 1
+        Hint = 'EN'
+        OnClick = mnLangKorClick
+      end
+    end
+    object MenuItem5: TMenuItem
+      Caption = '도움말(&H)'
+      object MenuItem20: TMenuItem
+        Action = acAbout
+        Caption = 'TrimUI Tool 정보(&A)'
+      end
+    end
+  end
+end
