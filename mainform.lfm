@@ -1,11 +1,11 @@
 object FormMain: TFormMain
-  Left = 354
-  Height = 642
-  Top = 134
+  Left = 506
+  Height = 620
+  Top = 132
   Width = 918
   AllowDropFiles = True
-  Caption = 'TrimUI Tool v0.7'
-  ClientHeight = 642
+  Caption = 'TrimUI Tool v0.9'
+  ClientHeight = 620
   ClientWidth = 918
   Menu = MainMenu
   OnClose = FormClose
@@ -14,20 +14,20 @@ object FormMain: TFormMain
   OnDropFiles = FormDropFiles
   OnShow = FormShow
   LCLVersion = '3.4.0.0'
-  object Panel1: TPanel
+  object pnImage: TPanel
     Left = 692
-    Height = 535
+    Height = 513
     Top = 0
     Width = 226
     Align = alRight
     BevelOuter = bvNone
-    ClientHeight = 535
+    ClientHeight = 513
     ClientWidth = 226
     TabOrder = 0
     object Image: TImage
       Left = 13
       Height = 290
-      Top = 32
+      Top = 5
       Width = 200
       Center = True
       ParentShowHint = False
@@ -38,7 +38,7 @@ object FormMain: TFormMain
     object NoImage: TImage
       Left = 27
       Height = 171
-      Top = 92
+      Top = 65
       Width = 172
       Picture.Data = {
         1754506F727461626C654E6574776F726B47726170686963D016000089504E47
@@ -228,14 +228,66 @@ object FormMain: TFormMain
       }
       Visible = False
     end
+    object Image1: TImage
+      Cursor = crHandPoint
+      Left = 13
+      Height = 114
+      Top = 301
+      Width = 96
+      Center = True
+      OnClick = Image1Click
+      ParentShowHint = False
+      PopupMenu = pmImage
+      Proportional = True
+      ShowHint = True
+    end
+    object Image2: TImage
+      Cursor = crHandPoint
+      Left = 117
+      Height = 114
+      Top = 301
+      Width = 96
+      Center = True
+      OnClick = Image1Click
+      ParentShowHint = False
+      PopupMenu = pmImage
+      Proportional = True
+      ShowHint = True
+    end
+    object Image3: TImage
+      Cursor = crHandPoint
+      Left = 13
+      Height = 114
+      Top = 421
+      Width = 96
+      Center = True
+      OnClick = Image1Click
+      ParentShowHint = False
+      PopupMenu = pmImage
+      Proportional = True
+      ShowHint = True
+    end
+    object Image4: TImage
+      Cursor = crHandPoint
+      Left = 117
+      Height = 114
+      Top = 421
+      Width = 96
+      Center = True
+      OnClick = Image1Click
+      ParentShowHint = False
+      PopupMenu = pmImage
+      Proportional = True
+      ShowHint = True
+    end
   end
   object Panel3: TPanel
     Left = 0
-    Height = 535
+    Height = 513
     Top = 0
     Width = 692
     Align = alClient
-    ClientHeight = 535
+    ClientHeight = 513
     ClientWidth = 692
     TabOrder = 1
     object Panel4: TPanel
@@ -250,8 +302,8 @@ object FormMain: TFormMain
       TabOrder = 0
       object Label1: TLabel
         Left = 12
-        Height = 24
-        Top = 14
+        Height = 14
+        Top = 17
         Width = 72
         Alignment = taRightJustify
         AutoSize = False
@@ -259,15 +311,15 @@ object FormMain: TFormMain
       end
       object edBasePath: TEdit
         Left = 88
-        Height = 40
-        Top = 10
+        Height = 23
+        Top = 12
         Width = 200
         TabOrder = 0
       end
       object btOpen: TButton
         Left = 314
         Height = 25
-        Top = 9
+        Top = 12
         Width = 26
         Action = acOpenBasePath
         Caption = '...'
@@ -283,7 +335,7 @@ object FormMain: TFormMain
       object btRefresh: TButton
         Left = 339
         Height = 25
-        Top = 9
+        Top = 12
         Width = 26
         Action = acRefresh
         Caption = '⟳'
@@ -297,8 +349,8 @@ object FormMain: TFormMain
       end
       object Label2: TLabel
         Left = 399
-        Height = 24
-        Top = 14
+        Height = 14
+        Top = 17
         Width = 76
         Alignment = taRightJustify
         AutoSize = False
@@ -306,28 +358,27 @@ object FormMain: TFormMain
       end
       object cboEmulator: TComboBox
         Left = 480
-        Height = 35
-        Top = 11
+        Height = 23
+        Top = 12
         Width = 136
-        ItemHeight = 0
+        ItemHeight = 15
         Style = csDropDownList
         TabOrder = 4
         OnChange = cboEmulatorChange
       end
       object Label3: TLabel
-        Left = 8
-        Height = 26
-        Top = 231
-        Width = 104
+        Left = 43
+        Height = 12
+        Top = 230
+        Width = 72
         Alignment = taRightJustify
-        AutoSize = False
         Caption = '스크랩검색어'
       end
       object edSearch: TEdit
         Left = 120
-        Height = 40
+        Height = 23
         Hint = '스크래핑 시 해당 키워드를 통해 검색합니다'
-        Top = 226
+        Top = 225
         Width = 112
         ParentShowHint = False
         ShowHint = True
@@ -337,7 +388,7 @@ object FormMain: TFormMain
       object btScrape: TButton
         Left = 239
         Height = 34
-        Top = 225
+        Top = 224
         Width = 76
         Action = acScrape
         TabOrder = 6
@@ -345,7 +396,7 @@ object FormMain: TFormMain
       object btAutoDetect: TButton
         Left = 289
         Height = 25
-        Top = 9
+        Top = 12
         Width = 26
         Action = acDetectBasePath
         Caption = '!'
@@ -360,15 +411,15 @@ object FormMain: TFormMain
       object GroupBox1: TGroupBox
         Left = 24
         Height = 171
-        Top = 49
+        Top = 48
         Width = 608
         Caption = '상세정보'
-        ClientHeight = 147
-        ClientWidth = 606
+        ClientHeight = 154
+        ClientWidth = 604
         TabOrder = 7
         object Label4: TLabel
           Left = 16
-          Height = 24
+          Height = 18
           Top = 4
           Width = 72
           Alignment = taRightJustify
@@ -377,7 +428,7 @@ object FormMain: TFormMain
         end
         object Label5: TLabel
           Left = 24
-          Height = 24
+          Height = 18
           Top = 45
           Width = 64
           Alignment = taRightJustify
@@ -386,7 +437,7 @@ object FormMain: TFormMain
         end
         object Label6: TLabel
           Left = 303
-          Height = 24
+          Height = 18
           Top = 44
           Width = 88
           Alignment = taRightJustify
@@ -395,60 +446,62 @@ object FormMain: TFormMain
         end
         object ckShortname: TCheckBox
           Left = 97
-          Height = 27
+          Height = 19
           Top = 116
-          Width = 108
+          Width = 94
           Caption = '롬 단축파일명'
           TabOrder = 7
         end
         object edImagePath: TEdit
           Left = 400
-          Height = 40
+          Height = 23
           Top = 38
           Width = 193
           TabOrder = 3
         end
         object edRomPath: TEdit
           Left = 96
-          Height = 40
+          Height = 23
           Top = 38
           Width = 193
           TabOrder = 2
         end
         object edLabel: TEdit
           Left = 96
-          Height = 40
+          Height = 23
           Top = -2
           Width = 193
+          DoubleBuffered = True
+          ParentDoubleBuffered = False
           TabOrder = 0
         end
         object ckHideBios: TCheckBox
           Left = 201
-          Height = 27
+          Height = 19
           Top = 116
-          Width = 117
+          Width = 102
           Caption = '바이오스숨기기'
           TabOrder = 8
         end
         object edGamelist: TEdit
           Left = 400
-          Height = 40
+          Height = 23
           Top = 78
           Width = 193
           TabOrder = 5
         end
         object Label7: TLabel
-          Left = 0
-          Height = 24
+          Left = 24
+          Height = 18
           Top = 82
-          Width = 88
+          Width = 64
           Alignment = taRightJustify
           AutoSize = False
           Caption = '확장자 목록'
         end
         object Label8: TLabel
           Left = 312
-          Height = 24
+          Height = 18
           Top = 82
           Width = 79
           Alignment = taRightJustify
@@ -457,22 +510,22 @@ object FormMain: TFormMain
         end
         object edExtList: TEdit
           Left = 96
-          Height = 40
+          Height = 23
           Top = 78
           Width = 193
           TabOrder = 4
         end
         object ckUseSwap: TCheckBox
           Left = 16
-          Height = 27
+          Height = 19
           Top = 116
-          Width = 82
+          Width = 70
           Caption = '스왑 사용'
           TabOrder = 6
         end
         object Label9: TLabel
           Left = 312
-          Height = 24
+          Height = 18
           Top = 4
           Width = 79
           Alignment = taRightJustify
@@ -481,7 +534,7 @@ object FormMain: TFormMain
         end
         object edIcon: TEdit
           Left = 400
-          Height = 40
+          Height = 23
           Top = -2
           Width = 193
           TabOrder = 1
@@ -498,18 +551,17 @@ object FormMain: TFormMain
       object btGenerateCache: TButton
         Left = 328
         Height = 34
-        Top = 225
+        Top = 224
         Width = 139
         Action = acGenerateCache
         ParentShowHint = False
         ShowHint = True
         TabOrder = 8
-        OnClick = btGenerateCacheClick
       end
       object btGenerateGamelist: TButton
         Left = 480
         Height = 34
-        Top = 225
+        Top = 224
         Width = 139
         Action = acBuildGamelist
         ParentShowHint = False
@@ -517,53 +569,86 @@ object FormMain: TFormMain
         TabOrder = 9
       end
     end
-    object ListView: TListView
+    object Panel1: TPanel
       Left = 1
-      Height = 269
+      Height = 247
       Top = 265
       Width = 690
       Align = alClient
-      AutoSortIndicator = True
-      BorderStyle = bsNone
-      Columns = <      
-        item
-          Caption = '롬이름'
-          Width = 200
-          SortIndicator = siDescending
-        end      
-        item
-          Caption = '이미지 경로'
-          Visible = False
-          Width = 1
-        end      
-        item
-          Caption = '롬파일명'
-          Width = 100
-        end      
-        item
-          Caption = '롬경로'
-          Width = 377
-        end>
-      GridLines = True
-      HideSelection = False
-      MultiSelect = True
-      ParentFont = False
-      PopupMenu = pmPopup
-      RowSelect = True
-      SortColumn = 0
-      SortDirection = sdDescending
-      SortType = stText
+      ClientHeight = 247
+      ClientWidth = 690
       TabOrder = 1
-      ViewStyle = vsReport
-      OnCustomDrawItem = ListViewCustomDrawItem
-      OnEdited = ListViewEdited
-      OnSelectItem = ListViewSelectItem
+      object TreeView: TTreeView
+        Left = 1
+        Height = 245
+        Top = 1
+        Width = 137
+        Align = alLeft
+        AutoExpand = True
+        Images = ImageList
+        PopupMenu = pmDir
+        RowSelect = True
+        TabOrder = 0
+        OnChange = TreeViewChange
+        OnDragDrop = TreeViewDragDrop
+        OnDragOver = TreeViewDragOver
+        OnEdited = TreeViewEdited
+        Options = [tvoAutoExpand, tvoAutoItemHeight, tvoHideSelection, tvoKeepCollapsedNodes, tvoRowSelect, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoThemedDraw]
+      end
+      object ListView: TListView
+        Left = 143
+        Height = 245
+        Top = 1
+        Width = 546
+        Align = alClient
+        AutoSortIndicator = True
+        BorderStyle = bsNone
+        Columns = <        
+          item
+            Caption = '롬이름'
+            Width = 200
+          end        
+          item
+            Caption = '이미지 경로'
+            Visible = False
+            Width = 1
+          end        
+          item
+            Caption = '롬파일명'
+            Width = 100
+          end        
+          item
+            Caption = '롬경로'
+            Width = 377
+          end>
+        DragMode = dmAutomatic
+        GridLines = True
+        HideSelection = False
+        MultiSelect = True
+        ParentFont = False
+        PopupMenu = pmPopup
+        RowSelect = True
+        SmallImages = ImageList
+        SortColumn = 0
+        SortType = stText
+        TabOrder = 1
+        ViewStyle = vsReport
+        OnCustomDrawItem = ListViewCustomDrawItem
+        OnEdited = ListViewEdited
+        OnSelectItem = ListViewSelectItem
+      end
+      object Splitter1: TSplitter
+        Left = 138
+        Height = 245
+        Top = 1
+        Width = 5
+      end
     end
   end
   object mmLog: TMemo
     Left = 0
     Height = 107
-    Top = 535
+    Top = 513
     Width = 918
     Align = alBottom
     Color = clBlack
@@ -648,6 +733,18 @@ object FormMain: TFormMain
     object acAddRom: TAction
       Caption = '롬추가(&N)'
       OnExecute = acAddRomExecute
+    end
+    object acMkDir: TAction
+      Caption = '폴더 생성(&F)'
+      OnExecute = acMkDirExecute
+    end
+    object acGithub: TAction
+      Caption = '&Github'
+      OnExecute = acGithubExecute
+    end
+    object acRmDir: TAction
+      Caption = '폴더 삭제(&D)'
+      OnExecute = acRmDirExecute
     end
   end
   object pmPopup: TPopupMenu
@@ -773,6 +870,12 @@ object FormMain: TFormMain
       object MenuItem21: TMenuItem
         Action = acAddRom
       end
+      object MenuItem26: TMenuItem
+        Action = acMkDir
+      end
+      object MenuItem30: TMenuItem
+        Action = acRmDir
+      end
       object MenuItem12: TMenuItem
         Action = acSaveEmuInfo
       end
@@ -781,7 +884,6 @@ object FormMain: TFormMain
       end
       object MenuItem15: TMenuItem
         Action = acGenerateCache
-        OnClick = MenuItem15Click
       end
       object MenuItem14: TMenuItem
         Action = acBuildGamelist
@@ -836,6 +938,71 @@ object FormMain: TFormMain
         Action = acAbout
         Caption = 'TrimUI Tool 정보(&A)'
       end
+      object MenuItem28: TMenuItem
+        Action = acGithub
+      end
+    end
+  end
+  object ImageList: TImageList
+    Left = 328
+    Top = 304
+    Bitmap = {
+      4C7A060000001000000010000000DD0400000000000078DAED985F6CD35514C7
+      6F3ADD984EC714980F688428236A4974119EFDF360221A338D18D107B7325F84
+      80F26062A2461F30445F244CE1417D80487F5D496420FFD99F32B6C41253DA6E
+      CB9658C75AB4125666BBA66BBB1ECFF7F6F7EB7EFCF66BD73F23406293937B7F
+      E79CCFBDE79C7B7FF7B6252241B750FC0EF1994F1109165225015DB1BCF457C4
+      03B9F1B8CFBA886EBC4222FDCA8D5D1BA7427EB6C858CD64F63688FF7FBE323E
+      52C1FA47E816BFBF77E8FB1FD1AF4139EBB698BCBB4BDC53E63E08A31DB28B17
+      B9ED2B25068D91E3D8C5973E87F8A2A41C54468DC3C56BF6428935908CCA4751
+      836259B55E51B5A57273CFBD8365E6AEF1E5E68EBE5711E972DEFB52EA7533C5
+      EA8AEF6AEA8DA51EEF8911047DE88AE5D7B27FEFF50CB9A324057DAB6B3AA98D
+      5748D6F64E47D16A6CA9A28D53219F2926D63C52095B94ACEB8B51C7789486A7
+      A7C817BB4A43B108EDF9738AAC7DC5B1BFFD1BA5DD6127ADF7D9C87A71133D35
+      F01A7D3ABA970623930B8EB1773CCB367B5BC9EADE44C1449856773F470F9FDC
+      401F5FDA4DDF06220579C4BCDE6F936CD3858D383369E5890DD478C44A2B9C6B
+      C8733D5C9047BEEB2EBE25E7D57FC663135477B0917E9FBC5C90F773AD90EFEA
+      EEE7E5BCF834385649F6DE1F1BC813F98BD6F464F7A079FE53B256C817316BF3
+      56FF5047DBFA77D29E3F26930BBC1FB5FF24AE793FF1ED4A20DFBA038D54F753
+      036D776D4F84E3610FEC45BC63B55713D7BEB912FF3B188806C2A15828C8ECD7
+      AC5F7233CE0345115510DD5917C86733FD3EA088763E5BF79BDE95AC87BD103F
+      F28BB88F9990EF907856CFFB3BC5D3DCBFE25644FD3CEE7361C1B86307C4FDEA
+      99DCC6E7F3A0AF53BC22CF5BB47671DE6B17ADB0C34FC6C19CC623368C0F76F8
+      A068667B9CC5C5BAE368591F1F3A249E811D7E32478D57E592229A59DFEFCDB2
+      6F1BBE276D869ED97EF815A8DFABB85FCC6CCCF77B1D62A3C97D1430DC2FC7F3
+      DC5B270C7E81793E6AAD4A99FF86FC956CFE5CEB770CECBB5C9B69D3FC0DF547
+      9DE1CBB5388F5CC0E0396FFD0DEBCF369BDF2E06102BF264E6655F760DDB4CD7
+      BFD2FDB788FBBFD2F70F2204355455CDBC61B1A43EB458923BD067DDD222B815
+      96AAE4FEAABB92296E492FAAEE7BF6596ECA56CF3C595D930AD62C49CEDAB6A4
+      E9D8AF191A1B2329478F65083AD8D86702BEC679C1363E944A9F399BA150884C
+      E5F4990CC1478E216899C6735CFB3036ECF0EBEE9E3F86A63B792A43D535C959
+      66BE53E75E8ADCB6B4A7A5FDECB98CCCB7FDFD748E451F3AD8F0FC5E6B1AF548
+      325B2FEBCC36E46BF447ABEF6BF6AEA3D939986DE135DA89FEE8E88DF16EDD96
+      CED55E8B4D13F84A9B25F5911413FE83AD733CE60E06E76C23231A2FF7C6EBA5
+      C67FA46B2E7EAD7E6DB6F2EA57C1FA75E8F6CF72EC09EC8D53A7F3EF1FB0D9FD
+      93BCCCCC8326FB770263B7B6A5658EA829047DC40C5B969D7922CFFBB30CFB0A
+      B999BC3FD07518E7CD334E7D766F2477A86BD4A2D5EA76930AFEFBA0C5FEFF06
+      67E30545D4F2DDF326DA85CE4A238FDF647C471CF63BC561D63BF5BFD1F8DC7E
+      045288E7FBA685EFCF4EE9EF149D7856D9C778DC0108FA85E6C7BCFAF9877F16
+      8FCADF9BCCE9FB46DEE3142B3D8A58A5CF9F9F9B8C736AB1A0D578F73E71373F
+      F7707F50F3D5FB99DC71D2965B4387F84A7EE79A635ECAC7EAC7D0ED01C5A03F
+      578835D64FFFFFD19DB277174BFE03F97B604E
+    }
+  end
+  object pmDir: TPopupMenu
+    Left = 160
+    Top = 368
+    object MenuItem24: TMenuItem
+      Action = acAddRom
+    end
+    object MenuItem25: TMenuItem
+      Action = acMkDir
+    end
+    object MenuItem29: TMenuItem
+      Action = acRmDir
+    end
+    object MenuItem27: TMenuItem
+      Action = acRename
     end
   end
 end

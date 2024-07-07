@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2024-06-29 03:27+0900\n"
+"PO-Revision-Date: 2024-07-07 11:45+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -36,9 +36,17 @@ msgstr "Delete the ROM file. Do you want to continue?"
 msgid "삭제되었습니다"
 msgstr "Deleted"
 
+#: mainform.i18n_deletedirconfirm
+msgid "폴더를 삭제합니다. 계속 하시겠습니까?"
+msgstr "Delete the folder. Do you want to continue?"
+
+#: mainform.i18n_direxists
+msgid "폴더가 존재합니다"
+msgstr "Folder exists"
+
 #: mainform.i18n_dirnotfound
-msgid "디렉터리를 찾을 수 없습니다"
-msgstr "Directory not found"
+msgid "폴더를 찾을 수 없습니다"
+msgstr "Folder not found"
 
 #: mainform.i18n_donescrape
 msgid "스크랩이 완료되었습니다"
@@ -65,6 +73,14 @@ msgstr ""
 #: mainform.i18n_gencache
 msgid "캐시를 생성하고 있습니다..."
 msgstr "Creating a cache..."
+
+#: mainform.i18n_inputdirname
+msgid "폴더명을 입력하세요"
+msgstr "Enter the folder name"
+
+#: mainform.i18n_makedir
+msgid "폴더생성"
+msgstr "New folder"
 
 #: mainform.i18n_noselemul
 msgid "선택된 에뮬레이터가 없습니다"
@@ -132,6 +148,14 @@ msgstr "E&xit"
 msgid "캐시 재생성(&C)"
 msgstr "Generate &cache"
 
+#: tformmain.acgithub.caption
+msgid "&Github"
+msgstr "&Github"
+
+#: tformmain.acmkdir.caption
+msgid "폴더 생성(&F)"
+msgstr "&New folder"
+
 #: tformmain.acopenbasepath.caption
 msgid "기준위치 열기"
 msgstr "Open"
@@ -151,6 +175,10 @@ msgstr "&Rename"
 #: tformmain.acrescrapeall.caption
 msgid "모두 스크랩(&A)"
 msgstr "Scrape &all"
+
+#: tformmain.acrmdir.caption
+msgid "폴더 삭제(&D)"
+msgstr "&Delete folder"
 
 #: tformmain.acsaveemuinfo.caption
 msgid "상세정보 저장(&V)"
@@ -178,8 +206,8 @@ msgid "⟳"
 msgstr "⟳"
 
 #: tformmain.caption
-msgid "TrimUI Tool v0.7"
-msgstr "TrimUI Tool v0.7"
+msgid "TrimUI Tool v0.9"
+msgstr "TrimUI Tool v0.9"
 
 #: tformmain.ckhidebios.caption
 msgid "바이오스숨기기"

@@ -25,8 +25,16 @@ msgstr ""
 msgid "삭제되었습니다"
 msgstr ""
 
+#: mainform.i18n_deletedirconfirm
+msgid "폴더를 삭제합니다. 계속 하시겠습니까?"
+msgstr ""
+
+#: mainform.i18n_direxists
+msgid "폴더가 존재합니다"
+msgstr ""
+
 #: mainform.i18n_dirnotfound
-msgid "디렉터리를 찾을 수 없습니다"
+msgid "폴더를 찾을 수 없습니다"
 msgstr ""
 
 #: mainform.i18n_donescrape
@@ -51,6 +59,14 @@ msgstr ""
 
 #: mainform.i18n_gencache
 msgid "캐시를 생성하고 있습니다..."
+msgstr ""
+
+#: mainform.i18n_inputdirname
+msgid "폴더명을 입력하세요"
+msgstr ""
+
+#: mainform.i18n_makedir
+msgid "폴더생성"
 msgstr ""
 
 #: mainform.i18n_noselemul
@@ -117,6 +133,14 @@ msgstr ""
 msgid "캐시 재생성(&C)"
 msgstr ""
 
+#: tformmain.acgithub.caption
+msgid "&Github"
+msgstr ""
+
+#: tformmain.acmkdir.caption
+msgid "폴더 생성(&F)"
+msgstr ""
+
 #: tformmain.acopenbasepath.caption
 msgid "기준위치 열기"
 msgstr ""
@@ -135,6 +159,10 @@ msgstr ""
 
 #: tformmain.acrescrapeall.caption
 msgid "모두 스크랩(&A)"
+msgstr ""
+
+#: tformmain.acrmdir.caption
+msgid "폴더 삭제(&D)"
 msgstr ""
 
 #: tformmain.acsaveemuinfo.caption
@@ -163,7 +191,7 @@ msgid "⟳"
 msgstr ""
 
 #: tformmain.caption
-msgid "TrimUI Tool v0.7"
+msgid "TrimUI Tool v0.9"
 msgstr ""
 
 #: tformmain.ckhidebios.caption

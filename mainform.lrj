@@ -1,5 +1,5 @@
 {"version":1,"strings":[
-{"hash":125400951,"name":"tformmain.caption","sourcebytes":[84,114,105,109,85,73,32,84,111,111,108,32,118,48,46,55],"value":"TrimUI Tool v0.7"},
+{"hash":125400953,"name":"tformmain.caption","sourcebytes":[84,114,105,109,85,73,32,84,111,111,108,32,118,48,46,57],"value":"TrimUI Tool v0.9"},
 {"hash":38331112,"name":"tformmain.label1.caption","sourcebytes":[234,184,176,236,164,128,236,156,132,236,185,152],"value":"\uAE30\uC900\uC704\uCE58"},
 {"hash":12558,"name":"tformmain.btopen.caption","sourcebytes":[46,46,46],"value":"..."},
 {"hash":60579,"name":"tformmain.btrefresh.caption","sourcebytes":[226,159,179],"value":"\u27F3"},
@@ -38,6 +38,9 @@
 {"hash":56861833,"name":"tformmain.acgeneratecache.caption","sourcebytes":[236,186,144,236,139,156,32,236,158,172,236,131,157,236,132,177,40,38,67,41],"value":"\uCE90\uC2DC \uC7AC\uC0DD\uC131(&C)"},
 {"hash":251678745,"name":"tformmain.acabout.caption","sourcebytes":[84,114,105,109,85,73,32,236,160,149,235,179,180,40,38,65,41],"value":"TrimUI \uC815\uBCF4(&A)"},
 {"hash":4795369,"name":"tformmain.acaddrom.caption","sourcebytes":[235,161,172,236,182,148,234,176,128,40,38,78,41],"value":"\uB86C\uCD94\uAC00(&N)"},
+{"hash":40479625,"name":"tformmain.acmkdir.caption","sourcebytes":[237,143,180,235,141,148,32,236,131,157,236,132,177,40,38,70,41],"value":"\uD3F4\uB354 \uC0DD\uC131(&F)"},
+{"hash":182497170,"name":"tformmain.acgithub.caption","sourcebytes":[38,71,105,116,104,117,98],"value":"&Github"},
+{"hash":306025,"name":"tformmain.acrmdir.caption","sourcebytes":[237,143,180,235,141,148,32,236,130,173,236,160,156,40,38,68,41],"value":"\uD3F4\uB354 \uC0AD\uC81C(&D)"},
 {"hash":109170489,"name":"tformmain.menuitem4.caption","sourcebytes":[237,140,140,236,157,188,40,38,70,41],"value":"\uD30C\uC77C(&F)"},
 {"hash":47773497,"name":"tformmain.menuitem9.caption","sourcebytes":[236,138,164,237,129,172,235,158,169,40,38,83,41],"value":"\uC2A4\uD06C\uB7A9(&S)"},
 {"hash":49466729,"name":"tformmain.menuitem23.caption","sourcebytes":[236,150,184,236,150,180,40,76,97,110,103,117,97,103,101,41],"value":"\uC5B8\uC5B4(Language)"},

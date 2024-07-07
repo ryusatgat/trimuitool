@@ -35,8 +35,16 @@ msgstr "롬 파일을 삭제합니다. 계속 하시겠습니까?"
 msgid "삭제되었습니다"
 msgstr "삭제되었습니다"
 
+#: mainform.i18n_deletedirconfirm
+msgid "폴더를 삭제합니다. 계속 하시겠습니까?"
+msgstr "롬 파일을 삭제합니다. 계속 하시겠습니까?"
+
+#: mainform.i18n_direxists
+msgid "폴더가 존재합니다"
+msgstr "파일이 존재합니다"
+
 #: mainform.i18n_dirnotfound
-msgid "디렉터리를 찾을 수 없습니다"
+msgid "폴더를 찾을 수 없습니다"
 msgstr "디렉터리를 찾을 수 없습니다"
 
 #: mainform.i18n_donescrape
@@ -62,6 +70,14 @@ msgstr "캐시로부터 gamelist.xml 파일을 새로 생성합니다. 계속 �
 #: mainform.i18n_gencache
 msgid "캐시를 생성하고 있습니다..."
 msgstr "캐시를 생성하고 있습니다..."
+
+#: mainform.i18n_inputdirname
+msgid "폴더명을 입력하세요"
+msgstr "폴더명을 입력하세요"
+
+#: mainform.i18n_makedir
+msgid "폴더생성"
+msgstr "폴더생성"
 
 #: mainform.i18n_noselemul
 msgid "선택된 에뮬레이터가 없습니다"
@@ -127,6 +143,14 @@ msgstr "종료(&X)"
 msgid "캐시 재생성(&C)"
 msgstr "캐시 재생성(&C)"
 
+#: tformmain.acgithub.caption
+msgid "&Github"
+msgstr "&Github"
+
+#: tformmain.acmkdir.caption
+msgid "폴더 생성(&F)"
+msgstr "폴더 생성(&F)"
+
 #: tformmain.acopenbasepath.caption
 msgid "기준위치 열기"
 msgstr "기준위치 열기"
@@ -146,6 +170,10 @@ msgstr "이름 바꾸기(&R)"
 #: tformmain.acrescrapeall.caption
 msgid "모두 스크랩(&A)"
 msgstr "모두 스크랩(&A)"
+
+#: tformmain.acrmdir.caption
+msgid "폴더 삭제(&D)"
+msgstr "폴더 삭제(&D)"
 
 #: tformmain.acsaveemuinfo.caption
 msgid "상세정보 저장(&V)"
@@ -173,8 +201,8 @@ msgid "⟳"
 msgstr "⟳"
 
 #: tformmain.caption
-msgid "TrimUI Tool v0.7"
-msgstr "TrimUI Tool v0.7"
+msgid "TrimUI Tool v0.9"
+msgstr "TrimUI Tool v0.9"
 
 #: tformmain.ckhidebios.caption
 msgid "바이오스숨기기"
