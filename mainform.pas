@@ -1671,8 +1671,8 @@ begin
     FindUpdate('', 0);
 
     Path := EmuConfig.EmuPath + '/' + edRomPath.Text + '/';
-    SQLQuery.SQL.Text := Format('INSERT INTO %s_roms (disp, path, imgpath, type, ppath, pinyin, cpinyin, opinyin) SELECT DISTINCT ppath, %s||ppath, %s||ppath, 1, ''.'', '''', '''', '''' FROM SFC_roms WHERE ppath <> ''.''',
-      [EmuConfig.System, QuotedStr(Path), QuotedStr(Path)]);
+    SQLQuery.SQL.Text := Format('INSERT INTO %s_roms (disp, path, imgpath, type, ppath, pinyin, cpinyin, opinyin) SELECT DISTINCT ppath, %s||ppath, %s||ppath, 1, ''.'', '''', '''', '''' FROM %s_roms WHERE ppath <> ''.''',
+      [EmuConfig.System, QuotedStr(Path), QuotedStr(Path), EmuConfig.System]);
     SQLQuery.ExecSQL;
   finally
     SQLite3Connection.Connected := False;
