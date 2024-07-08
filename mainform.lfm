@@ -4,7 +4,7 @@ object FormMain: TFormMain
   Top = 132
   Width = 918
   AllowDropFiles = True
-  Caption = 'TrimUI Tool v0.92'
+  Caption = 'TrimUI Tool v0.93'
   ClientHeight = 620
   ClientWidth = 918
   Menu = MainMenu
@@ -302,7 +302,7 @@ object FormMain: TFormMain
       TabOrder = 0
       object Label1: TLabel
         Left = 12
-        Height = 14
+        Height = 18
         Top = 17
         Width = 72
         Alignment = taRightJustify
@@ -349,7 +349,7 @@ object FormMain: TFormMain
       end
       object Label2: TLabel
         Left = 399
-        Height = 14
+        Height = 18
         Top = 17
         Width = 76
         Alignment = taRightJustify

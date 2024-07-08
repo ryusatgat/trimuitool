@@ -519,6 +519,14 @@ begin
 
           ImageUrl := TJsonObject(JData).FindPath('result[0].url_image_ingame').AsString;
           Get(ImageUrl, Stream);
+          Stream.Seek(0, soFromBeginning);
+          Image.Picture.LoadFromStream(Stream);
+
+          if not SaveImage(Image, ScrapeInfo.ImagePath) then
+          begin
+            WriteLog('Scraping ' + ScrapeInfo.System + ' - ' + Image.Picture.Graphic.Classname + '--> File format error');
+            exit;
+          end;
         end;
       end else
       begin
