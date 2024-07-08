@@ -4,7 +4,7 @@ object FormMain: TFormMain
   Top = 132
   Width = 918
   AllowDropFiles = True
-  Caption = 'TrimUI Tool v0.9'
+  Caption = 'TrimUI Tool v0.92'
   ClientHeight = 620
   ClientWidth = 918
   Menu = MainMenu

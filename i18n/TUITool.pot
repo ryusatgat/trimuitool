@@ -191,7 +191,7 @@ msgid "⟳"
 msgstr ""
 
 #: tformmain.caption
-msgid "TrimUI Tool v0.9"
+msgid "TrimUI Tool v0.92"
 msgstr ""
 
 #: tformmain.ckhidebios.caption

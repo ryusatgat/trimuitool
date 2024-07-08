@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2024-07-07 11:45+0900\n"
+"PO-Revision-Date: 2024-07-08 17:13+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -206,8 +206,8 @@ msgid "⟳"
 msgstr "⟳"
 
 #: tformmain.caption
-msgid "TrimUI Tool v0.9"
-msgstr "TrimUI Tool v0.9"
+msgid "TrimUI Tool v0.92"
+msgstr "TrimUI Tool v0.92"
 
 #: tformmain.ckhidebios.caption
 msgid "바이오스숨기기"

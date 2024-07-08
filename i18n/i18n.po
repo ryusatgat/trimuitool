@@ -201,8 +201,8 @@ msgid "⟳"
 msgstr "⟳"
 
 #: tformmain.caption
-msgid "TrimUI Tool v0.9"
-msgstr "TrimUI Tool v0.9"
+msgid "TrimUI Tool v0.92"
+msgstr "TrimUI Tool v0.92"
 
 #: tformmain.ckhidebios.caption
 msgid "바이오스숨기기"

@@ -33,7 +33,7 @@ type
 
   PScrapeInfo = ^TScrapeInfo;
   TScrapeInfo = record
-    System, Key, ImagePath, SearchStr, Gamelist: String;
+    System, Key, ImagePath, SearchStr, Gamelist, ImageBase: String;
     IsShortname, IsForce: Boolean;
   end;
 
@@ -405,6 +405,7 @@ begin
   ScrapeInfo.IsShortname := False;
   ScrapeInfo.IsForce := False;
   ScrapeInfo.Gamelist := '';
+  ScrapeInfo.ImageBase := '';
 
   while not Terminated do
   begin
@@ -572,7 +573,7 @@ begin
       end;
 
       WriteLog(ScrapeInfo.SearchStr + ' - ' + I18N_DONESCRAPE);
-      WriteLog('@' + ScrapeInfo.ImagePath + '|' + ScrapeInfo.System + '|' + ScrapeInfo.Key + '|' + IntToStr(ImageCount));
+      WriteLog('@' + ScrapeInfo.ImagePath + '|' + ScrapeInfo.ImageBase + '|' + ScrapeInfo.Key + '|' + IntToStr(ImageCount));
     except
       on E :Exception do
       WriteLog(ScrapeInfo.SearchStr + I18N_ERROROCCURED + ' - ' + E.Message);
@@ -618,6 +619,7 @@ begin
   ScrapeInfo.System := EmuConfig.System;
   ScrapeInfo.IsShortname := (EmuConfig.Shortname)and(edSearch.Text = '');
   ScrapeInfo.IsForce := True;
+  ScrapeInfo.ImageBase := EmuConfig.EmuPath + '/' + edImagePath.Text;
   QueueThread.SetBasePath(edBasePath.Text);
 
   for i:= 0 to ListView.Items.Count-1 do
@@ -647,6 +649,7 @@ begin
   ScrapeInfo.System := EmuConfig.System;
   ScrapeInfo.IsShortname := EmuConfig.Shortname;
   ScrapeInfo.IsForce := True;
+  ScrapeInfo.ImageBase := EmuConfig.EmuPath + '/' + edImagePath.Text;
   QueueThread.SetBasePath(edBasePath.Text);
 
   for i:=0 to ListView.Items.Count-1 do
@@ -1152,10 +1155,10 @@ begin
       if Fullname = '' then
         exit;
       Path := EmuConfig.RomPath;
-      Path := StringReplace(Path, '..\..', edBasePath.Text, [rfReplaceAll]);
+      Path := StringReplace(Path, '..' + DirectorySeparator + '..', edBasePath.Text, [rfReplaceAll]);
       if Assigned(TreeView.Selected) and (TreeView.Selected.Level > 0) then
-        Path := Path + '\' + SubDir;
-      Path := Path + '\' + Filename + Ext;
+        Path := Path + DirectorySeparator + SubDir;
+      Path := Path + DirectorySeparator + Filename + Ext;
       CopyFile(Filenames[i], Path);
       WriteLog(Filenames[i] + ' --> ' + Path);
       GetEmuList(TreeView.Selected.Text);
@@ -1377,10 +1380,10 @@ end;
 
 procedure TFormMain.IPCServerMessage(Sender: TObject);
 var
-  ImageFile, Key, System: String;
+  ImageFile, Key: String;
   StrArr: TStringArray;
   i, ImageCount: Integer;
-  ImagePath: String;
+  ImagePath, ImageBase: String;
 begin
   IPCServer.ReadMessage;
   if (Copy(IPCServer.StringMessage, 1, 1) = '@') then
@@ -1388,7 +1391,7 @@ begin
     try
       StrArr := Copy(IPCServer.StringMessage, 2).Split('|');
       ImageFile := StrArr[0];
-      System := Strarr[1];
+      ImageBase := Strarr[1];
       Key := StrArr[2];
       ImageCount := StrToInt(StrArr[3]);
 
@@ -1423,15 +1426,14 @@ begin
       Image.Picture.LoadFromFile(ImageFile);
       Image.Hint := ImageFile;
 
-      if System = cboEmulator.Text then
-        for i:=0 to ListView.Items.Count-1 do
-          if ListView.Items[i].SubItems[1] = Key then
-          begin
-            ImageFile :=  EmuConfig.EmuPath + '/' + edImagePath.Text + '/' + ExtractFileName(ImageFile);
-            ListView.Items[i].SubItems[0] := ImageFile;
-            UpdateCache(Key, 'imgpath', ImageFile);
-            break;
-          end;
+      for i:=0 to ListView.Items.Count-1 do
+        if ListView.Items[i].SubItems[1] = Key then
+        begin
+          ImageFile := ImageBase + '/' + ExtractFileName(ImageFile);
+          ListView.Items[i].SubItems[0] := ImageFile;
+          UpdateCache(Key, 'imgpath', ImageFile);
+          break;
+        end;
     end;
   end else
     WriteLog(IPCServer.StringMessage);
@@ -1957,7 +1959,7 @@ begin
     ExtractFileNameOnly(Application.ExeName) + '.ini';
   with TIniFile.Create(IniFile) do
   try
-    Lang := ReadString('Main', 'Lang', 'KO');
+    Lang := ReadString('Main', 'Lang', 'EN');
     if Lang = 'EN' then
       mnLangEng.Click;
   finally
