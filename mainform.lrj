@@ -1,5 +1,6 @@
 {"version":1,"strings":[
-{"hash":127367091,"name":"tformmain.caption","sourcebytes":[84,114,105,109,85,73,32,84,111,111,108,32,118,48,46,57,51],"value":"TrimUI Tool v0.93"},
+{"hash":127367092,"name":"tformmain.caption","sourcebytes":[84,114,105,109,85,73,32,84,111,111,108,32,118,48,46,57,52],"value":"TrimUI Tool v0.94"},
+{"hash":142165976,"name":"tformmain.ckforcepng.caption","sourcebytes":[234,176,149,236,160,156,32,112,110,103,32,235,179,128,237,153,152],"value":"\uAC15\uC81C png \uBCC0\uD658"},
 {"hash":38331112,"name":"tformmain.label1.caption","sourcebytes":[234,184,176,236,164,128,236,156,132,236,185,152],"value":"\uAE30\uC900\uC704\uCE58"},
 {"hash":12558,"name":"tformmain.btopen.caption","sourcebytes":[46,46,46],"value":"..."},
 {"hash":60579,"name":"tformmain.btrefresh.caption","sourcebytes":[226,159,179],"value":"\u27F3"},
@@ -41,6 +42,7 @@
 {"hash":40479625,"name":"tformmain.acmkdir.caption","sourcebytes":[237,143,180,235,141,148,32,236,131,157,236,132,177,40,38,70,41],"value":"\uD3F4\uB354 \uC0DD\uC131(&F)"},
 {"hash":182497170,"name":"tformmain.acgithub.caption","sourcebytes":[38,71,105,116,104,117,98],"value":"&Github"},
 {"hash":306025,"name":"tformmain.acrmdir.caption","sourcebytes":[237,143,180,235,141,148,32,236,130,173,236,160,156,40,38,68,41],"value":"\uD3F4\uB354 \uC0AD\uC81C(&D)"},
+{"hash":73351257,"name":"tformmain.acscanext.caption","sourcebytes":[237,153,149,236,158,165,236,158,144,32,236,138,164,236,186,148,40,38,69,41],"value":"\uD655\uC7A5\uC790 \uC2A4\uCE94(&E)"},
 {"hash":109170489,"name":"tformmain.menuitem4.caption","sourcebytes":[237,140,140,236,157,188,40,38,70,41],"value":"\uD30C\uC77C(&F)"},
 {"hash":47773497,"name":"tformmain.menuitem9.caption","sourcebytes":[236,138,164,237,129,172,235,158,169,40,38,83,41],"value":"\uC2A4\uD06C\uB7A9(&S)"},
 {"hash":49466729,"name":"tformmain.menuitem23.caption","sourcebytes":[236,150,184,236,150,180,40,76,97,110,103,117,97,103,101,41],"value":"\uC5B8\uC5B4(Language)"},
