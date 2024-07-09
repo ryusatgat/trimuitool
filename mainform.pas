@@ -33,8 +33,8 @@ type
 
   PScrapeInfo = ^TScrapeInfo;
   TScrapeInfo = record
-    System, Key, ImagePath, SearchStr, Gamelist: String;
-    IsShortname, IsForce: Boolean;
+    System, Key, ImagePath, SearchStr, Gamelist, ImageBase: String;
+    IsShortname, IsForce, ForcePng: Boolean;
   end;
 
   { TQueueThread }
@@ -92,6 +92,7 @@ type
     btSaveEmuInfo: TButton;
     C1: TMenuItem;
     cboEmulator: TComboBox;
+    ckForcePng: TCheckBox;
     ckHideBios: TCheckBox;
     ckShortname: TCheckBox;
     ckUseSwap: TCheckBox;
@@ -325,16 +326,29 @@ begin
   end;
 end;
 
-function SaveImage(Image: TImage; var ImagePath: String): Boolean;
+function SaveImage(Image: TImage; var ImagePath: String; ForcePng: Boolean): Boolean;
+var
+  PngImage: TPortableNetworkGraphic;
 begin
   if Image.Picture.Graphic.Classname = 'TPortableNetworkGraphic' then
   begin
     if ExtractFileExt(ImagePath) <> '.png' then
-      ImagePath := ImagePath + '.png'
+      ImagePath := ExtractFileNameWithoutExt(ImagePath) + '.png'
   end else if Image.Picture.Graphic.Classname = 'TJpegImage' then
   begin
-    if ExtractFileExt(ImagePath) <> '.jpg' then
-      ImagePath := ImagePath + '.jpg'
+    if ForcePng then
+    begin
+      PngImage := TPortableNetworkGraphic.Create;
+      try
+        PngImage.Assign(Image.Picture.Bitmap);
+        ImagePath := ExtractFileNameWithoutExt(ImagePath) + '.png';
+        Image.Picture.Bitmap.LoadFromRawImage(PngImage.RawImage, False);
+      finally
+        if Assigned(PngImage) then
+          PngImage.Free;
+      end;
+    end else if ExtractFileExt(ImagePath) <> '.jpg' then
+      ImagePath := ExtractFileNameWithoutExt(ImagePath) + '.jpg'
   end else begin
     Result := False;
     exit;
@@ -405,6 +419,8 @@ begin
   ScrapeInfo.IsShortname := False;
   ScrapeInfo.IsForce := False;
   ScrapeInfo.Gamelist := '';
+  ScrapeInfo.ImageBase := '';
+  ScrapeInfo.ForcePng := True;
 
   while not Terminated do
   begin
@@ -518,6 +534,14 @@ begin
 
           ImageUrl := TJsonObject(JData).FindPath('result[0].url_image_ingame').AsString;
           Get(ImageUrl, Stream);
+          Stream.Seek(0, soFromBeginning);
+          Image.Picture.LoadFromStream(Stream);
+
+          if not SaveImage(Image, ScrapeInfo.ImagePath, ScrapeInfo.ForcePng) then
+          begin
+            WriteLog('Scraping ' + ScrapeInfo.System + ' - ' + Image.Picture.Graphic.Classname + '--> File format error');
+            exit;
+          end;
         end;
       end else
       begin
@@ -546,7 +570,7 @@ begin
             Stream.Seek(0, soFromBeginning);
             Image.Picture.LoadFromStream(Stream);
 
-            if not SaveImage(Image, ScrapeInfo.ImagePath) then
+            if not SaveImage(Image, ScrapeInfo.ImagePath, ScrapeInfo.ForcePng) then
             begin
               WriteLog('Scraping ' + ScrapeInfo.System + ' - ' + Image.Picture.Graphic.Classname + '--> File format error');
               exit;
@@ -572,7 +596,7 @@ begin
       end;
 
       WriteLog(ScrapeInfo.SearchStr + ' - ' + I18N_DONESCRAPE);
-      WriteLog('@' + ScrapeInfo.ImagePath + '|' + ScrapeInfo.System + '|' + ScrapeInfo.Key + '|' + IntToStr(ImageCount));
+      WriteLog('@' + ScrapeInfo.ImagePath + '|' + ScrapeInfo.ImageBase + '|' + ScrapeInfo.Key + '|' + IntToStr(ImageCount));
     except
       on E :Exception do
       WriteLog(ScrapeInfo.SearchStr + I18N_ERROROCCURED + ' - ' + E.Message);
@@ -618,6 +642,8 @@ begin
   ScrapeInfo.System := EmuConfig.System;
   ScrapeInfo.IsShortname := (EmuConfig.Shortname)and(edSearch.Text = '');
   ScrapeInfo.IsForce := True;
+  ScrapeInfo.ImageBase := EmuConfig.EmuPath + '/' + edImagePath.Text;
+  ScrapeInfo.ForcePng := ckForcePng.Checked;
   QueueThread.SetBasePath(edBasePath.Text);
 
   for i:= 0 to ListView.Items.Count-1 do
@@ -647,6 +673,8 @@ begin
   ScrapeInfo.System := EmuConfig.System;
   ScrapeInfo.IsShortname := EmuConfig.Shortname;
   ScrapeInfo.IsForce := True;
+  ScrapeInfo.ImageBase := EmuConfig.EmuPath + '/' + edImagePath.Text;
+  ScrapeInfo.ForcePng := ckForcePng.Checked;
   QueueThread.SetBasePath(edBasePath.Text);
 
   for i:=0 to ListView.Items.Count-1 do
@@ -858,7 +886,7 @@ begin
 
       Key := ListView.Selected.SubItems[1];
       ImageFile := EmuConfig.ImgPath + DirectorySeparator + ExtractFileNameWithoutExt(ExtractFilename(FileName)) + Ext;
-      SaveImage(Image, ImageFile);
+      SaveImage(Image, ImageFile, ckForcePng.Checked);
 
       ImageFile :=  EmuConfig.EmuPath + '/' + edImagePath.Text + '/' + ExtractFileNameWithoutExt(ExtractFilename(FileName)) + Ext;
       ListView.Selected.SubItems[0] := ImageFile;
@@ -1152,10 +1180,10 @@ begin
       if Fullname = '' then
         exit;
       Path := EmuConfig.RomPath;
-      Path := StringReplace(Path, '..\..', edBasePath.Text, [rfReplaceAll]);
+      Path := StringReplace(Path, '..' + DirectorySeparator + '..', edBasePath.Text, [rfReplaceAll]);
       if Assigned(TreeView.Selected) and (TreeView.Selected.Level > 0) then
-        Path := Path + '\' + SubDir;
-      Path := Path + '\' + Filename + Ext;
+        Path := Path + DirectorySeparator + SubDir;
+      Path := Path + DirectorySeparator + Filename + Ext;
       CopyFile(Filenames[i], Path);
       WriteLog(Filenames[i] + ' --> ' + Path);
       GetEmuList(TreeView.Selected.Text);
@@ -1177,7 +1205,7 @@ begin
       Key := ListView.Selected.SubItems[1];
       Filename := ExtractFileName(Lin2Win(edBasePath.Text, ListView.Selected.SubItems[2]));
       ImageFile := EmuConfig.ImgPath + DirectorySeparator + ExtractFileNameWithoutExt(Filename) + Ext;
-      SaveImage(Image, ImageFile);
+      SaveImage(Image, ImageFile, ckForcePng.Checked);
 
       ImageFile :=  EmuConfig.EmuPath + edImagePath.Text + '/' + ExtractFileNameWithoutExt(FileName) + Ext;
       ListView.Selected.SubItems[0] := ImageFile;
@@ -1377,10 +1405,10 @@ end;
 
 procedure TFormMain.IPCServerMessage(Sender: TObject);
 var
-  ImageFile, Key, System: String;
+  ImageFile, Key: String;
   StrArr: TStringArray;
   i, ImageCount: Integer;
-  ImagePath: String;
+  ImagePath, ImageBase: String;
 begin
   IPCServer.ReadMessage;
   if (Copy(IPCServer.StringMessage, 1, 1) = '@') then
@@ -1388,7 +1416,7 @@ begin
     try
       StrArr := Copy(IPCServer.StringMessage, 2).Split('|');
       ImageFile := StrArr[0];
-      System := Strarr[1];
+      ImageBase := Strarr[1];
       Key := StrArr[2];
       ImageCount := StrToInt(StrArr[3]);
 
@@ -1423,15 +1451,14 @@ begin
       Image.Picture.LoadFromFile(ImageFile);
       Image.Hint := ImageFile;
 
-      if System = cboEmulator.Text then
-        for i:=0 to ListView.Items.Count-1 do
-          if ListView.Items[i].SubItems[1] = Key then
-          begin
-            ImageFile :=  EmuConfig.EmuPath + '/' + edImagePath.Text + '/' + ExtractFileName(ImageFile);
-            ListView.Items[i].SubItems[0] := ImageFile;
-            UpdateCache(Key, 'imgpath', ImageFile);
-            break;
-          end;
+      for i:=0 to ListView.Items.Count-1 do
+        if ListView.Items[i].SubItems[1] = Key then
+        begin
+          ImageFile := ImageBase + '/' + ExtractFileName(ImageFile);
+          ListView.Items[i].SubItems[0] := ImageFile;
+          UpdateCache(Key, 'imgpath', ImageFile);
+          break;
+        end;
     end;
   end else
     WriteLog(IPCServer.StringMessage);
@@ -1611,6 +1638,7 @@ var
           FindUpdate(Info.Name, 1);
           continue;
         end;
+        ExtList := SplitString(EmuConfig.ExtList, '|');
         if {%H-}MatchStr(Copy(ExtractFileExt(Info.Name), 2), ExtList) then
         begin
           Shortname := ExtractFileNameWithoutExt(ExtractFileName(Info.Name));
@@ -1666,13 +1694,13 @@ begin
     SQLQuery.SQL.Text :=
       Format('CREATE TABLE IF NOT EXISTS %s_roms (id INTEGER NOT NULL, disp TEXT NOT NULL,	path TEXT NOT NULL,	imgpath TEXT NOT NULL, type INTEGER NULL, ppath TEXT NOT NULL, pinyin TEXT NOT NULL, cpinyin TEXT NOT NULL, opinyin TEXT NOT NULL,	PRIMARY KEY (id))',
       [EmuConfig.System]);
-    ExtList := SplitString(EmuConfig.ExtList, '|');
+
     SQLQuery.ExecSQL;
     FindUpdate('', 0);
 
     Path := EmuConfig.EmuPath + '/' + edRomPath.Text + '/';
-    SQLQuery.SQL.Text := Format('INSERT INTO %s_roms (disp, path, imgpath, type, ppath, pinyin, cpinyin, opinyin) SELECT DISTINCT ppath, %s||ppath, %s||ppath, 1, ''.'', '''', '''', '''' FROM SFC_roms WHERE ppath <> ''.''',
-      [EmuConfig.System, QuotedStr(Path), QuotedStr(Path)]);
+    SQLQuery.SQL.Text := Format('INSERT INTO %s_roms (disp, path, imgpath, type, ppath, pinyin, cpinyin, opinyin) SELECT DISTINCT ppath, %s||ppath, %s||ppath, 1, ''.'', '''', '''', '''' FROM %s_roms WHERE ppath <> ''.''',
+      [EmuConfig.System, QuotedStr(Path), QuotedStr(Path), EmuConfig.System]);
     SQLQuery.ExecSQL;
   finally
     SQLite3Connection.Connected := False;
@@ -1957,7 +1985,7 @@ begin
     ExtractFileNameOnly(Application.ExeName) + '.ini';
   with TIniFile.Create(IniFile) do
   try
-    Lang := ReadString('Main', 'Lang', 'KO');
+    Lang := ReadString('Main', 'Lang', 'EN');
     if Lang = 'EN' then
       mnLangEng.Click;
   finally

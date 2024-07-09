@@ -1,5 +1,6 @@
 {"version":1,"strings":[
-{"hash":125400953,"name":"tformmain.caption","sourcebytes":[84,114,105,109,85,73,32,84,111,111,108,32,118,48,46,57],"value":"TrimUI Tool v0.9"},
+{"hash":127367092,"name":"tformmain.caption","sourcebytes":[84,114,105,109,85,73,32,84,111,111,108,32,118,48,46,57,52],"value":"TrimUI Tool v0.94"},
+{"hash":142165976,"name":"tformmain.ckforcepng.caption","sourcebytes":[234,176,149,236,160,156,32,112,110,103,32,235,179,128,237,153,152],"value":"\uAC15\uC81C png \uBCC0\uD658"},
 {"hash":38331112,"name":"tformmain.label1.caption","sourcebytes":[234,184,176,236,164,128,236,156,132,236,185,152],"value":"\uAE30\uC900\uC704\uCE58"},
 {"hash":12558,"name":"tformmain.btopen.caption","sourcebytes":[46,46,46],"value":"..."},
 {"hash":60579,"name":"tformmain.btrefresh.caption","sourcebytes":[226,159,179],"value":"\u27F3"},
