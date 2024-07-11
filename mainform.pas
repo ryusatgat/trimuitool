@@ -43,20 +43,20 @@ type
   private
     HttpClient: TFPHttpClient;
     Image: TImage;
-    BasePath: String;
-    IPCClient: TSimpleIPCClient;
-    ScrapeList: TList;
+    class var BasePath: String;
+    class var IPCClient: TSimpleIPCClient;
+    class var ScrapeList: TList;
+    class var Count, TotalCount: Integer;
   public
     constructor Create(CreateSuspended: boolean);
     destructor Destroy; override;
     procedure Execute; override;
-    procedure SetBasePath(Path: String);
-    procedure CancelScrape;
-    procedure Put(ScrapeInfo: TScrapeInfo);
+    class procedure SetBasePath(Path: String); static;
+    class procedure CancelScrape; static;
+    class procedure Put(ScrapeInfo: TScrapeInfo); static;
     function Get(var ScrapeInfo: TScrapeInfo): Boolean;
     procedure Scrape(ScrapeInfo: TScrapeInfo; IsArcade: Boolean);
-//    procedure ScrapeYahoo(ScrapeInfo: TScrapeInfo);
-    procedure WriteLog(Log: String);
+    class procedure WriteLog(Log: String); static;
   end;
 
   { TFormMain }
@@ -83,6 +83,7 @@ type
     acGithub: TAction;
     acRmDir: TAction;
     acScanExt: TAction;
+    acScrapeTotal: TAction;
     ActionList: TActionList;
     btGenerateCache: TButton;
     btGenerateGamelist: TButton;
@@ -147,10 +148,13 @@ type
     MenuItem28: TMenuItem;
     MenuItem29: TMenuItem;
     MenuItem30: TMenuItem;
+    MenuItem31: TMenuItem;
+    MenuItem32: TMenuItem;
     mnLangKor: TMenuItem;
     mnLangEng: TMenuItem;
     Panel1: TPanel;
     pmDir: TPopupMenu;
+    pbInfo: TProgressBar;
     Separator4: TMenuItem;
     Separator3: TMenuItem;
     Separator2: TMenuItem;
@@ -203,6 +207,7 @@ type
     procedure acScanExtExecute(Sender: TObject);
     procedure acScrapeExecute(Sender: TObject);
     procedure acScrapeMissingExecute(Sender: TObject);
+    procedure acScrapeTotalExecute(Sender: TObject);
     procedure btOpenClick(Sender: TObject);
     procedure cboEmulatorChange(Sender: TObject);
     procedure edSearchKeyPress(Sender: TObject; var Key: char);
@@ -257,17 +262,17 @@ var
   SystemMap: TStringList;
 
 resourcestring
-  I18N_SCRAPESTARTED = ' 스크랩이 시작되었습니다';
+  I18N_SCRAPESTARTED = ' 스크래핑이 시작되었습니다';
   I18N_ROMFROM = '롬 한글정보 출처: 텐타클팀(http://cafe.naver.com/raspigamer)';
   I18N_FILENOTFOUND = '파일을 찾을 수 없습니다';
   I18N_DIRNOTFOUND = '폴더를 찾을 수 없습니다';
-  I18N_CANCELEDSCRAPE = '스크랩이 취소되었습니다';
+  I18N_CANCELEDSCRAPE = '스크래핑이 취소되었습니다';
   I18N_GENCACHE = '캐시를 생성하고 있습니다...';
   I18N_ERROROCCURED = '오류가 발생하였습니다';
   I18N_FILEEXISTS = '파일이 존재합니다';
   I18N_DIREXISTS = '폴더가 존재합니다';
   I18N_NOSELEMUL = '선택된 에뮬레이터가 없습니다';
-  I18N_DONESCRAPE = '스크랩이 완료되었습니다';
+  I18N_DONESCRAPE = '스크래핑이 완료되었습니다';
   I18N_ROMNOTSELECTED = '롬을 먼저 선택해주세요';
   I18N_SAVED = '저장되었습니다';
   I18N_CREATED = '생성되었습니다';
@@ -282,6 +287,8 @@ resourcestring
   I18N_MAKEDIR = '폴더생성';
   I18N_INPUTDIRNAME = '폴더명을 입력하세요';
   I18N_ADDEDEXT = '확장자가 추가되었습니다';
+  I18N_SCRAPEALLCONFIRM = '에뮬레이터 전체 영역에 대해 누락 항목을 스크래핑합니다. 계속하시겠습니까?';
+  I18N_DONE = '완료되었습니다';
 
 implementation
 
@@ -391,22 +398,42 @@ constructor TQueueThread.Create(CreateSuspended : boolean);
 begin
   inherited Create(CreateSuspended);
   Image := TImage.Create(nil);
-  HttpClient := TFPHTTPClient.Create(nil);
 
-  ScrapeList := TList.Create;
-  IPCClient := TSimpleIPCClient.Create(nil);
-  IPCClient.ServerID := 'WriteLog';
+  EnterCriticalSection(CriticalSection);
+  try
+    HttpClient := TFPHTTPClient.Create(nil);
+    if not Assigned(ScrapeList) then
+      ScrapeList := TList.Create;
+    if not Assigned(IPCClient) then
+    begin
+      IPCClient := TSimpleIPCClient.Create(nil);
+      IPCClient.ServerID := 'WriteLog';
+    end;
+
+    Count := 0;
+    TotalCount := 0;
+  finally
+    LeaveCriticalSection(CriticalSection);
+  end;
 end;
 
 destructor TQueueThread.Destroy;
 var
   i: Integer;
 begin
-  for i:=0 to ScrapeList.Count-1 do
-    Dispose(PScrapeInfo(ScrapeList.Items[i]));
+  EnterCriticalSection(CriticalSection);
+  try
+    for i:=0 to ScrapeList.Count-1 do
+      Dispose(PScrapeInfo(ScrapeList.Items[i]));
 
-  ScrapeList.Free;
-  IPCClient.Free;
+    if Assigned(ScrapeList) then
+      FreeAndNil(ScrapeList);
+    if Assigned(IPCClient) then
+      FreeAndNil(IPCClient);
+  finally
+    LeaveCriticalSection(CriticalSection);
+  end;
+
   HttpClient.Free;
   Image.Free;
   inherited Destroy;
@@ -440,17 +467,18 @@ begin
   end;
 end;
 
-procedure TQueueThread.SetBasePath(Path: String);
+class procedure TQueueThread.SetBasePath(Path: String); static;
 begin
-  Self.BasePath := Path;
+  BasePath := Path;
 end;
 
-procedure TQueueThread.CancelScrape;
+class procedure TQueueThread.CancelScrape; static;
 var
   i: Integer;
 begin
-  EnterCriticalSection(CriticalSection);
   WriteLog(I18N_CANCELEDSCRAPE + ' - ' + IntToStr(ScrapeList.Count));
+  EnterCriticalSection(CriticalSection);
+
   try
     for i:=0 to ScrapeList.Count-1 do
       Dispose(PScrapeInfo(ScrapeList.Items[i]));
@@ -458,15 +486,16 @@ begin
   finally
     LeaveCriticalSection(CriticalSection);
   end;
-
 end;
 
-procedure TQueueThread.Put(ScrapeInfo: TScrapeInfo);
+class procedure TQueueThread.Put(ScrapeInfo: TScrapeInfo); static;
 var
   Info: PScrapeInfo;
 begin
   EnterCriticalSection(CriticalSection);
   try
+    Count += 1;
+    TotalCount += 1;
     New(Info);
     Info^ := ScrapeInfo;
     ScrapeList.Add(Info);
@@ -523,6 +552,12 @@ begin
     exit;
   end;
 
+  EnterCriticalSection(CriticalSection);
+  try
+    Count -= 1;
+  finally
+    LeaveCriticalSection(CriticalSection);
+  end;
   ImageCount := 0;
   Stream := TMemoryStream.Create;
 
@@ -535,6 +570,12 @@ begin
           JsonStr := Get('http://adb.arcadeitalia.net/service_scraper.php?ajax=query_mame&game_name=' + ScrapeInfo.SearchStr);
 
           JData := GetJSON(JsonStr);
+
+          if not Assigned(JData) then
+          begin
+            WriteLog('No data found error - ' + ScrapeInfo.SearchStr);
+            exit;
+          end;
 
           ImageUrl := TJsonObject(JData).FindPath('result[0].url_image_ingame').AsString;
           Get(ImageUrl, Stream);
@@ -553,8 +594,13 @@ begin
         if SystemMap.Values[ScrapeInfo.System] <> '' then
           SysStr := SystemMap.Values[ScrapeInfo.System];
         try
-          Contents := HttpClient.Get('https://images.search.yahoo.com/search/images?p=' +
-          HTTPEncode(StringReplace('screenshot+gamefabrique+'+GetText(ScrapeInfo.SearchStr)+'+'+SysStr, ' ', '+', [rfReplaceAll])));
+          EnterCriticalSection(CriticalSection);
+          try
+            Contents := HttpClient.Get('https://images.search.yahoo.com/search/images?p=' +
+              HTTPEncode(StringReplace('screenshot+gamefabrique+'+GetText(ScrapeInfo.SearchStr)+'+'+SysStr, ' ', '+', [rfReplaceAll])));
+          finally
+            LeaveCriticalSection(CriticalSection);
+          end;
         except
           on E :Exception do
           begin
@@ -599,19 +645,25 @@ begin
         end;
       end;
 
-      WriteLog(ScrapeInfo.SearchStr + ' - ' + I18N_DONESCRAPE);
-      WriteLog('@' + ScrapeInfo.ImagePath + '|' + ScrapeInfo.ImageBase + '|' + ScrapeInfo.Key + '|' + IntToStr(ImageCount));
+      WriteLog('@' + ScrapeInfo.ImagePath + '|' + ScrapeInfo.ImageBase + '|' + ScrapeInfo.Key + '|' + IntToStr(ImageCount) + '|' +
+        IntToStr(Count)  + '|' + IntToStr(TotalCount));
     except
       on E :Exception do
       WriteLog(ScrapeInfo.SearchStr + I18N_ERROROCCURED + ' - ' + E.Message);
     end;
-
   finally
     Stream.Free;
+    EnterCriticalSection(CriticalSection);
+    try
+      if Count = 0 then
+        TotalCount := 0;
+    finally
+      LeaveCriticalSection(CriticalSection);
+    end;
   end;
 end;
 
-procedure TQueueThread.WriteLog(Log: String);
+class procedure TQueueThread.WriteLog(Log: String); static;
 begin
   if not IPCClient.ServerRunning then
      exit;
@@ -648,7 +700,7 @@ begin
   ScrapeInfo.IsForce := True;
   ScrapeInfo.ImageBase := EmuConfig.EmuPath + '/' + edImagePath.Text;
   ScrapeInfo.ForcePng := ckForcePng.Checked;
-  QueueThread.SetBasePath(edBasePath.Text);
+  TQueueThread.SetBasePath(edBasePath.Text);
 
   for i:= 0 to ListView.Items.Count-1 do
   begin
@@ -662,7 +714,7 @@ begin
       Filename := ExtractFilename(Lin2Win(edBasePath.Text, ListView.Items[i].SubItems[2]));
       ScrapeInfo.ImagePath := EmuConfig.ImgPath + DirectorySeparator + ExtractFileNameWithoutExt(Filename);
 
-      QueueThread.Put(ScrapeInfo);
+      TQueueThread.Put(ScrapeInfo);
     end;
   end;
 end;
@@ -679,7 +731,7 @@ begin
   ScrapeInfo.IsForce := True;
   ScrapeInfo.ImageBase := EmuConfig.EmuPath + '/' + edImagePath.Text;
   ScrapeInfo.ForcePng := ckForcePng.Checked;
-  QueueThread.SetBasePath(edBasePath.Text);
+  TQueueThread.SetBasePath(edBasePath.Text);
 
   for i:=0 to ListView.Items.Count-1 do
   begin
@@ -689,8 +741,110 @@ begin
     ScrapeInfo.Key := ListView.Items[i].SubItems[1];
     Filename := ExtractFilename(Lin2Win(edBasePath.Text, ListView.Items[i].SubItems[2]));
     ScrapeInfo.ImagePath := EmuConfig.ImgPath + DirectorySeparator + ExtractFileNameWithoutExt(Filename);
-    QueueThread.Put(ScrapeInfo);
+    TQueueThread.Put(ScrapeInfo);
   end;
+end;
+
+procedure TFormMain.acScrapeTotalExecute(Sender: TObject);
+var
+  ScrapeInfo: TScrapeInfo;
+  Filename: String;
+  EmuPath, Shortname, ImagePath, Path: String;
+  SearchRec: TSearchRec;
+  Count: Integer;
+begin
+  Count := 0;
+  EmuPath := edBasePath.Text + DirectorySeparator + 'Emus';
+
+  if not DirectoryExists(EmuPath) then
+  begin
+    WriteLog(EmuPath + ' - ' + I18N_DIRNOTFOUND);
+    exit;
+  end;
+
+  if Application.MessageBox(PChar(I18N_SCRAPEALLCONFIRM),
+    PChar(I18N_CONFIRM), MB_ICONQUESTION + MB_YESNO) <> IDYES then
+    exit;
+
+  cboEmulator.Enabled := False;
+  WriteLog(I18N_SCRAPESTARTED);
+
+  try
+	  if FindFirst(EmuPath + DirectorySeparator + '*', faDirectory, SearchRec) = 0 then
+    begin
+		  repeat
+			  if Copy(SearchRec.Name, 1, 1) <> '.' then
+        begin
+          if not FileExists(EmuPath + DirectorySeparator + SearchRec.Name + DirectorySeparator + 'config.json') then
+            WriteLog(EmuPath + DirectorySeparator + SearchRec.Name + DirectorySeparator + 'config.json - ' + I18N_FILENOTFOUND)
+          else begin
+            if LoadEmuConfig(SearchRec.Name) then
+            begin
+              if not DirectoryExists(EmuConfig.RomPath) then
+                WriteLog(EmuConfig.RomPath + ' - ' + I18N_FILENOTFOUND)
+              else begin
+                WriteLog(I18N_PROCESSING + ' - ' + SearchRec.Name);
+                Application.ProcessMessages;
+                SQLite3Connection.DatabaseName := EmuConfig.CachePath;
+                if not SQLite3Connection.Connected then
+                  SQLite3Connection.Connected := True;
+                try
+                  ScrapeInfo.Gamelist := EmuConfig.Gamelist;
+                  ScrapeInfo.System := EmuConfig.System;
+                  ScrapeInfo.IsShortname := EmuConfig.Shortname;
+                  ScrapeInfo.IsForce := True;
+                  ScrapeInfo.ImageBase := EmuConfig.EmuPath + '/' + edImagePath.Text;
+                  ScrapeInfo.ForcePng := ckForcePng.Checked;
+                  TQueueThread.SetBasePath(edBasePath.Text);
+
+                  SQLQuery.SQL.Text := Format('SELECT id, disp, path, imgpath, pinyin, opinyin FROM %s_roms WHERE type = 0', [EmuConfig.System]);
+
+                  try
+                    SQLQuery.Active := True;
+                    SQLQuery.First;
+
+                    while not SQLQuery.EOF do
+                    begin
+                      Shortname := SQLQuery.FieldByName('opinyin').AsString;
+                      ImagePath := SQLQuery.FieldByName('imgpath').AsString;
+                      Path := SQLQuery.FieldByName('path').AsString;
+
+                      if not FileExists(Lin2Win(edBasePath.Text, ImagePath)) then
+                      begin
+                        ScrapeInfo.SearchStr := Shortname;
+                        ScrapeInfo.Key := Shortname;
+                        Filename := ExtractFilename(Lin2Win(edBasePath.Text, Path));
+                        ScrapeInfo.ImagePath := EmuConfig.ImgPath + DirectorySeparator + ExtractFileNameWithoutExt(Filename);
+                        TQueueThread.Put(ScrapeInfo);
+                        Inc(Count);
+                      end;
+
+                      SQLQuery.Next;
+                    end;
+                  except
+                    on E :Exception do
+                    begin
+                      WriteLog(I18N_ERROROCCURED + ' - ' + EmuConfig.System + '_roms - ' + E.Message);
+                    end;
+                  end;
+                finally
+                  SQLite3Connection.Connected := False;
+                end;
+              end;
+            end;
+          end;
+        end;
+        Application.ProcessMessages;
+      until FindNext(SearchRec) <> 0;
+
+      SysUtils.FindClose(SearchRec);
+    end;
+  finally
+    LoadEmuConfig(cboEmulator.Text);
+    cboEmulator.Enabled := True;
+  end;
+
+  WriteLog(I18N_DONE + ' - ' + IntToStr(Count));
 end;
 
 procedure TFormMain.acRenameExecute(Sender: TObject);
@@ -805,7 +959,8 @@ end;
 
 procedure TFormMain.acCancelScrapeExecute(Sender: TObject);
 begin
-  QueueThread.CancelScrape;
+  TQueueThread.CancelScrape;
+  pbInfo.Visible := False;
 end;
 
 procedure TFormMain.acBuildGamelistExecute(Sender: TObject);
@@ -1130,7 +1285,6 @@ begin
   if not FileExists(EmuConfig.CachePath) then
     BuildCache;
   GetSubDir;
-//  GetEmuList;
 end;
 
 procedure TFormMain.edSearchKeyPress(Sender: TObject; var Key: char);
@@ -1142,6 +1296,7 @@ end;
 procedure TFormMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   WriteSettings;
+  TQueueThread.CancelScrape;
 end;
 
 procedure TFormMain.FormCreate(Sender: TObject);
@@ -1198,6 +1353,8 @@ begin
   SystemMap.Add('VB=Nintendo Virtual Boy');
   SystemMap.Add('DOS=DOSBOX');
   SystemMap.Add('WS=wonderswan');
+
+  QueueThread := TQueueThread.Create(False);
 end;
 
 procedure TFormMain.FormDestroy(Sender: TObject);
@@ -1205,12 +1362,12 @@ begin
   SQLName.Close;
   SQLite3Name.Connected := False;
 
-  IPCServer.StopServer;
-  IPCServer.Free;
-  QueueThread.CancelScrape;
+  TQueueThread.CancelScrape;
   QueueThread.Terminate;
   QueueThread.WaitFor;
   QueueThread.Free;
+  IPCServer.StopServer;
+  IPCServer.Free;
   SystemMap.Free;
 
   DoneCriticalSection(CriticalSection);
@@ -1275,8 +1432,6 @@ procedure TFormMain.FormShow(Sender: TObject);
 var
   DbPath: String;
 begin
-  QueueThread := TQueueThread.Create(False);
-
   WriteLog(I18N_ROMFROM);
 
   DbPath := ExtractFileDir(Application.ExeName) + DirectorySeparator + 'romnames.db';
@@ -1465,6 +1620,7 @@ var
   ImageFile, Key: String;
   StrArr: TStringArray;
   i, ImageCount: Integer;
+  Count, TotalCount: Integer;
   ImagePath, ImageBase: String;
 begin
   IPCServer.ReadMessage;
@@ -1476,6 +1632,8 @@ begin
       ImageBase := Strarr[1];
       Key := StrArr[2];
       ImageCount := StrToInt(StrArr[3]);
+      Count := StrToInt(StrArr[4]);
+      TotalCount := StrToInt(StrArr[5]);
 
       if ImageCount > 0 then
       begin
@@ -1485,15 +1643,26 @@ begin
         Image4.Picture.Clear;
       end;
 
-      for i:=1 to ImageCount do
-      begin
-        ImagePath := ExtractFilePath(Application.ExeName) + DirectorySeparator + 'Image' + IntToStr(i) + '.jpg';
-        case i of
-        1: Image1.Picture.LoadFromFile(ImagePath);
-        2: Image2.Picture.LoadFromFile(ImagePath);
-        3: Image3.Picture.LoadFromFile(ImagePath);
-        4: Image4.Picture.LoadFromFile(ImagePath);
+      pbInfo.Visible := TotalCount-Count > 0;
+      pbInfo.Max := TotalCount;
+      pbInfo.Position := TotalCount - Count;
+      pbInfo.Caption := Format('%d / %d', [TotalCount-Count, TotalCount]);
+      pbInfo.Hint := pbInfo.Caption;
+
+      EnterCriticalSection(CriticalSection);
+      try
+        for i:=1 to ImageCount do
+        begin
+          ImagePath := ExtractFilePath(Application.ExeName) + DirectorySeparator + 'Image' + IntToStr(i) + '.jpg';
+          case i of
+          1: Image1.Picture.LoadFromFile(ImagePath);
+          2: Image2.Picture.LoadFromFile(ImagePath);
+          3: Image3.Picture.LoadFromFile(ImagePath);
+          4: Image4.Picture.LoadFromFile(ImagePath);
+          end;
         end;
+      finally
+        LeaveCriticalSection(CriticalSection);
       end;
     except
       on E :Exception do
@@ -1503,20 +1672,27 @@ begin
       end;
     end;
 
-    if FileExists(ImageFile) then
-    begin
-      Image.Picture.LoadFromFile(ImageFile);
-      Image.Hint := ImageFile;
+    EnterCriticalSection(CriticalSection);
+    try
+      if FileExists(ImageFile) then
+      begin
+        Image.Picture.LoadFromFile(ImageFile);
+        Image.Hint := ImageFile;
 
-      for i:=0 to ListView.Items.Count-1 do
-        if ListView.Items[i].SubItems[1] = Key then
-        begin
-          ImageFile := ImageBase + '/' + ExtractFileName(ImageFile);
-          ListView.Items[i].SubItems[0] := ImageFile;
-          UpdateCache(Key, 'imgpath', ImageFile);
-          break;
-        end;
+        for i:=0 to ListView.Items.Count-1 do
+          if ListView.Items[i].SubItems[1] = Key then
+          begin
+            ImageFile := ImageBase + '/' + ExtractFileName(ImageFile);
+            ListView.Items[i].SubItems[0] := ImageFile;
+            UpdateCache(Key, 'imgpath', ImageFile);
+            break;
+          end;
+      end;
+    finally
+      LeaveCriticalSection(CriticalSection);
     end;
+
+    WriteLog(Key + ' (' + pbInfo.Caption + ') - ' + I18N_DONESCRAPE);
   end else
     WriteLog(IPCServer.StringMessage);
 end;
@@ -1575,6 +1751,7 @@ end;
 procedure TFormMain.WriteLog(Log: String);
 begin
   mmLog.Lines.Add(Format('[%s] %s', [TimeToStr(Now), Log]));
+  mmLog.CaretPos := Point(0, mmLog.Lines.Count-1);
 end;
 
 function TFormMain.LoadEmuConfig(System: String): Boolean;
@@ -1756,7 +1933,7 @@ begin
     FindUpdate('', 0);
 
     Path := EmuConfig.EmuPath + '/' + edRomPath.Text + '/';
-    SQLQuery.SQL.Text := Format('INSERT INTO %s_roms (disp, path, imgpath, type, ppath, pinyin, cpinyin, opinyin) SELECT DISTINCT ppath, %s||ppath, %s||ppath, 1, ''.'', '''', '''', '''' FROM %s_roms WHERE ppath <> ''.''',
+    SQLQuery.SQL.Text := Format('INSERT INTO %s_roms (disp, path, imgpath, type, ppath, pinyin, cpinyin, opinyin) SELECT DISTINCT ppath, %s||ppath, %s||ppath, 1, ''.'', '''', '''', '''' FROM %s_roms WHERE ppath <> ''.'' AND ppath NOT IN (SELECT disp FROM SFC_roms WHERE type = 1)',
       [EmuConfig.System, QuotedStr(Path), QuotedStr(Path), EmuConfig.System]);
     SQLQuery.ExecSQL;
   finally
@@ -1917,8 +2094,8 @@ begin
   if (Query = '') then
     exit;
 
-  EnterCriticalSection(CriticalSection);
-
+  if not SQLite3Connection.Connected then
+    SQLite3Connection.Connected := True;
   try
     SQLQuery.SQL.Text := Format(Query, Args);
     try
@@ -1933,7 +2110,6 @@ begin
     Result := True;
   finally
     SQLite3Connection.Connected := False;
-    LeaveCriticalSection(CriticalSection);
   end;
 end;
 

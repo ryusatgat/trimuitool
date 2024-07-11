@@ -1,11 +1,11 @@
 object FormMain: TFormMain
-  Left = 353
-  Height = 656
-  Top = 116
+  Left = 474
+  Height = 675
+  Top = 152
   Width = 918
   AllowDropFiles = True
-  Caption = 'TrimUI Tool v0.94'
-  ClientHeight = 656
+  Caption = 'TrimUI Tool v0.95'
+  ClientHeight = 675
   ClientWidth = 918
   Menu = MainMenu
   OnClose = FormClose
@@ -16,14 +16,14 @@ object FormMain: TFormMain
   LCLVersion = '3.4.0.0'
   object pnImage: TPanel
     Left = 692
-    Height = 576
+    Height = 575
     Top = 0
     Width = 226
     Align = alRight
     BevelOuter = bvNone
-    ClientHeight = 576
+    ClientHeight = 575
     ClientWidth = 226
-    TabOrder = 0
+    TabOrder = 1
     object Image: TImage
       Left = 13
       Height = 290
@@ -294,13 +294,13 @@ object FormMain: TFormMain
   end
   object Panel3: TPanel
     Left = 0
-    Height = 576
+    Height = 575
     Top = 0
     Width = 692
     Align = alClient
-    ClientHeight = 576
+    ClientHeight = 575
     ClientWidth = 692
-    TabOrder = 1
+    TabOrder = 0
     object Panel4: TPanel
       Left = 1
       Height = 264
@@ -590,16 +590,16 @@ object FormMain: TFormMain
     end
     object Panel1: TPanel
       Left = 1
-      Height = 310
+      Height = 309
       Top = 265
       Width = 690
       Align = alClient
-      ClientHeight = 310
+      ClientHeight = 309
       ClientWidth = 690
       TabOrder = 1
       object TreeView: TTreeView
         Left = 1
-        Height = 308
+        Height = 307
         Top = 1
         Width = 137
         Align = alLeft
@@ -616,7 +616,7 @@ object FormMain: TFormMain
       end
       object ListView: TListView
         Left = 143
-        Height = 308
+        Height = 307
         Top = 1
         Width = 546
         Align = alClient
@@ -658,7 +658,7 @@ object FormMain: TFormMain
       end
       object Splitter1: TSplitter
         Left = 138
-        Height = 308
+        Height = 307
         Top = 1
         Width = 5
       end
@@ -667,7 +667,7 @@ object FormMain: TFormMain
   object mmLog: TMemo
     Left = 0
     Height = 80
-    Top = 576
+    Top = 575
     Width = 918
     Align = alBottom
     Color = clBlack
@@ -676,6 +676,18 @@ object FormMain: TFormMain
     ReadOnly = True
     ScrollBars = ssAutoBoth
     TabOrder = 2
+  end
+  object pbInfo: TProgressBar
+    Left = 0
+    Height = 20
+    Top = 655
+    Width = 918
+    Align = alBottom
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 3
+    Visible = False
+    BarShowText = True
   end
   object ActionList: TActionList
     Left = 108
@@ -769,6 +781,10 @@ object FormMain: TFormMain
       Caption = '확장자 스캔(&E)'
       OnExecute = acScanExtExecute
     end
+    object acScrapeTotal: TAction
+      Caption = '전체 에뮬레이터 스크랩(&T)'
+      OnExecute = acScrapeTotalExecute
+    end
   end
   object pmPopup: TPopupMenu
     Left = 220
@@ -781,6 +797,9 @@ object FormMain: TFormMain
     end
     object RescrapeAll1: TMenuItem
       Action = acRescrapeAll
+    end
+    object MenuItem32: TMenuItem
+      Action = acScrapeTotal
     end
     object Separator4: TMenuItem
       Caption = '-'
@@ -925,6 +944,9 @@ object FormMain: TFormMain
       end
       object MenuItem11: TMenuItem
         Action = acScrapeMissing
+      end
+      object MenuItem31: TMenuItem
+        Action = acScrapeTotal
       end
       object MenuItem16: TMenuItem
         Action = acCancelScrape
