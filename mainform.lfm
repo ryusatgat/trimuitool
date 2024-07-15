@@ -1,11 +1,11 @@
 object FormMain: TFormMain
-  Left = 353
-  Height = 656
-  Top = 116
+  Left = 993
+  Height = 673
+  Top = 141
   Width = 918
   AllowDropFiles = True
-  Caption = 'TrimUI Tool v0.94'
-  ClientHeight = 656
+  Caption = 'TrimUI Tool v0.96'
+  ClientHeight = 673
   ClientWidth = 918
   Menu = MainMenu
   OnClose = FormClose
@@ -16,14 +16,14 @@ object FormMain: TFormMain
   LCLVersion = '3.4.0.0'
   object pnImage: TPanel
     Left = 692
-    Height = 576
+    Height = 573
     Top = 0
     Width = 226
     Align = alRight
     BevelOuter = bvNone
-    ClientHeight = 576
+    ClientHeight = 573
     ClientWidth = 226
-    TabOrder = 0
+    TabOrder = 1
     object Image: TImage
       Left = 13
       Height = 290
@@ -294,13 +294,13 @@ object FormMain: TFormMain
   end
   object Panel3: TPanel
     Left = 0
-    Height = 576
+    Height = 573
     Top = 0
     Width = 692
     Align = alClient
-    ClientHeight = 576
+    ClientHeight = 573
     ClientWidth = 692
-    TabOrder = 1
+    TabOrder = 0
     object Panel4: TPanel
       Left = 1
       Height = 264
@@ -552,15 +552,23 @@ object FormMain: TFormMain
         end
         object btSaveEmuInfo: TButton
           Left = 470
-          Height = 25
-          Top = 118
+          Height = 34
+          Top = 109
           Width = 123
           Action = acSaveEmuInfo
           TabOrder = 9
         end
+        object btScanExt: TButton
+          Left = 328
+          Height = 34
+          Top = 109
+          Width = 136
+          Action = acScanExt
+          TabOrder = 10
+        end
       end
       object btGenerateCache: TButton
-        Left = 328
+        Left = 477
         Height = 34
         Top = 224
         Width = 139
@@ -569,29 +577,19 @@ object FormMain: TFormMain
         ShowHint = True
         TabOrder = 8
       end
-      object btGenerateGamelist: TButton
-        Left = 480
-        Height = 34
-        Top = 224
-        Width = 139
-        Action = acBuildGamelist
-        ParentShowHint = False
-        ShowHint = True
-        TabOrder = 9
-      end
     end
     object Panel1: TPanel
       Left = 1
-      Height = 310
+      Height = 307
       Top = 265
       Width = 690
       Align = alClient
-      ClientHeight = 310
+      ClientHeight = 307
       ClientWidth = 690
       TabOrder = 1
       object TreeView: TTreeView
         Left = 1
-        Height = 308
+        Height = 305
         Top = 1
         Width = 137
         Align = alLeft
@@ -608,7 +606,7 @@ object FormMain: TFormMain
       end
       object ListView: TListView
         Left = 143
-        Height = 308
+        Height = 305
         Top = 1
         Width = 546
         Align = alClient
@@ -650,7 +648,7 @@ object FormMain: TFormMain
       end
       object Splitter1: TSplitter
         Left = 138
-        Height = 308
+        Height = 305
         Top = 1
         Width = 5
       end
@@ -659,7 +657,7 @@ object FormMain: TFormMain
   object mmLog: TMemo
     Left = 0
     Height = 80
-    Top = 576
+    Top = 573
     Width = 918
     Align = alBottom
     Color = clBlack
@@ -669,19 +667,31 @@ object FormMain: TFormMain
     ScrollBars = ssAutoBoth
     TabOrder = 2
   end
+  object pbInfo: TProgressBar
+    Left = 0
+    Height = 20
+    Top = 653
+    Width = 918
+    Align = alBottom
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 3
+    Visible = False
+    BarShowText = True
+  end
   object ActionList: TActionList
     Left = 108
     Top = 363
     object acScrape: TAction
-      Caption = '스크랩(&S)'
+      Caption = '스크래핑(&S)'
       OnExecute = acScrapeExecute
     end
     object acRescrapeAll: TAction
-      Caption = '모두 스크랩(&A)'
+      Caption = '모두 스크래핑(&A)'
       Visible = False
     end
     object acScrapeMissing: TAction
-      Caption = '누락 항목 스크랩(&M)'
+      Caption = '누락 항목 스크래핑(&M)'
       OnExecute = acScrapeMissingExecute
     end
     object acRename: TAction
@@ -695,7 +705,7 @@ object FormMain: TFormMain
       ShortCut = 32814
     end
     object acCancelScrape: TAction
-      Caption = '스크랩 취소(&C)'
+      Caption = '스크래핑 취소(&C)'
       OnExecute = acCancelScrapeExecute
       ShortCut = 27
     end
@@ -712,7 +722,7 @@ object FormMain: TFormMain
       OnExecute = acSaveEmuInfoExecute
     end
     object acBuildGamelist: TAction
-      Caption = '&Gamelist.xml 생성'
+      Caption = '&gamelist.xml 생성'
       OnExecute = acBuildGamelistExecute
     end
     object acRefresh: TAction
@@ -757,6 +767,18 @@ object FormMain: TFormMain
       Caption = '폴더 삭제(&D)'
       OnExecute = acRmDirExecute
     end
+    object acScanExt: TAction
+      Caption = '확장자 스캔(&E)'
+      OnExecute = acScanExtExecute
+    end
+    object acScrapeTotal: TAction
+      Caption = '전체 에뮬레이터 스크래핑(&T)'
+      OnExecute = acScrapeTotalExecute
+    end
+    object acCacheFromXml: TAction
+      Caption = 'gamelist.xml 을 이용해서 게임 목록 생성'
+      OnExecute = acCacheFromXmlExecute
+    end
   end
   object pmPopup: TPopupMenu
     Left = 220
@@ -769,6 +791,9 @@ object FormMain: TFormMain
     end
     object RescrapeAll1: TMenuItem
       Action = acRescrapeAll
+    end
+    object MenuItem32: TMenuItem
+      Action = acScrapeTotal
     end
     object Separator4: TMenuItem
       Caption = '-'
@@ -864,7 +889,7 @@ object FormMain: TFormMain
   object MainMenu: TMainMenu
     Left = 45
     Top = 363
-    object MenuItem4: TMenuItem
+    object mnFile: TMenuItem
       Caption = '파일(&F)'
       object MenuItem7: TMenuItem
         Action = acDetectBasePath
@@ -896,9 +921,6 @@ object FormMain: TFormMain
       object MenuItem15: TMenuItem
         Action = acGenerateCache
       end
-      object MenuItem14: TMenuItem
-        Action = acBuildGamelist
-      end
       object Separator1: TMenuItem
         Caption = '-'
       end
@@ -906,13 +928,16 @@ object FormMain: TFormMain
         Action = acExit
       end
     end
-    object MenuItem9: TMenuItem
-      Caption = '스크랩(&S)'
+    object mnScrape: TMenuItem
+      Caption = '스크래퍼(&S)'
       object MenuItem10: TMenuItem
         Action = acScrape
       end
       object MenuItem11: TMenuItem
         Action = acScrapeMissing
+      end
+      object MenuItem31: TMenuItem
+        Action = acScrapeTotal
       end
       object MenuItem16: TMenuItem
         Action = acCancelScrape
@@ -927,7 +952,16 @@ object FormMain: TFormMain
         Action = acOpenImagePos
       end
     end
-    object MenuItem23: TMenuItem
+    object mnXML: TMenuItem
+      Caption = '&XML'
+      object MenuItem4: TMenuItem
+        Action = acCacheFromXml
+      end
+      object MenuItem5: TMenuItem
+        Action = acBuildGamelist
+      end
+    end
+    object mnLanguage: TMenuItem
       Caption = '언어(Language)'
       object mnLangKor: TMenuItem
         Caption = '한국어(&Korean)'
@@ -943,7 +977,7 @@ object FormMain: TFormMain
         OnClick = mnLangKorClick
       end
     end
-    object MenuItem5: TMenuItem
+    object mnHelp: TMenuItem
       Caption = '도움말(&H)'
       object MenuItem20: TMenuItem
         Action = acAbout
