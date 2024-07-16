@@ -19,7 +19,7 @@
 ## Image Scraping
 1. To scrape a screenshot, select the rom name from the list and click the Scrape button.
 2. If "shortname" is checked in the details, only one will be scraped, and if it is unchecked, four will be scraped. (Rom shortened filename is an arcade filename, so don't uncheck it, and if you want to scrape more, enter a search term to search in the scrape search term and scrape it to get 4 images unconditionally)
-   ※ Emulators with Rom shortened filename checked will get images from adb.arcadeitalia.net, and other emulators will get images from yahoo.com. You may get strange images, so choose the one you like the most. If you don't like all of them, please enter another search term in the scrape search box and press the scrape button.
+   - Emulators with Rom shortened filename checked will get images from adb.arcadeitalia.net, and other emulators will get images from yahoo.com. You may get strange images, so choose the one you like the most. If you don't like all of them, please enter another search term in the scrape search box and press the scrape button.
 3. Additionally, you can click on the scraped images to replace them with your own.
 4. You can search and download your own images in a web browser and drag the files to TRIMUI Tool to add them.
 5. Scrape All Emulators from the Scraper menu will scrape all the roms present in the rom (except if the images already exist), press ESC if you want to cancel the scraping.
